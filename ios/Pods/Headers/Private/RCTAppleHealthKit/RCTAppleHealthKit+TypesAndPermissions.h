@@ -1,0 +1,1 @@
+../../../RCTAppleHealthKit/RCTAppleHealthKit/RCTAppleHealthKit+TypesAndPermissions.h

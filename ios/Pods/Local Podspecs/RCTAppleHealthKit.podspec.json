@@ -1,0 +1,21 @@
+{
+  "name": "RCTAppleHealthKit",
+  "version": "0.6.5",
+  "summary": "A React Native package for interacting with Apple HealthKit",
+  "license": "MIT",
+  "homepage": "https://github.com/terrillo/rn-apple-healthkit",
+  "authors": "Terrillo Walls",
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "https://github.com/terrillo/rn-apple-healthkit.git",
+    "tag": "0.6.5v"
+  },
+  "source_files": "RCTAppleHealthKit/**/*.{h,m}",
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

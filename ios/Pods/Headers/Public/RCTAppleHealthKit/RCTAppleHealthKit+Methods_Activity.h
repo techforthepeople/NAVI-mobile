@@ -1,0 +1,1 @@
+../../../RCTAppleHealthKit/RCTAppleHealthKit/RCTAppleHealthKit+Methods_Activity.h
