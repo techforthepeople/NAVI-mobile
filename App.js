@@ -22,8 +22,9 @@ import Geolocation from "@react-native-community/geolocation";
 import AppleHealthKit from "rn-apple-healthkit";
 
 const App: () => React$Node = () => {
+  const [longitude, setLongitude] = useState(0);
 
-  const [location, setLocation] = useState(null);
+  const [latitude, setLatitude] = useState(0);
 
   const [height, setHeight] = useState(0);
 
@@ -31,8 +32,14 @@ const App: () => React$Node = () => {
 
   const [heartRate, setHeartRate] = useState(0);
 
-  const updateHealthData = () =>
-  {
+  const [age, setAge] = useState(0);
+
+  useEffect(() => {
+    updateHealthData();
+    updateLocation();
+  });
+
+  const updateHealthData = () => {
     let healthkit_init_options = {
       permissions: {
         read: ["Height", "Weight", "DateOfBirth", "HeartRate"]
@@ -45,57 +52,66 @@ const App: () => React$Node = () => {
         return;
       }
 
+      AppleHealthKit.getDateOfBirth(null, (err, results) => {
+        if (err) {
+          console.log("Error getting date of birth: ", err);
+          return;
+        }
+        console.log("Date of birth: ", results);
+        setAge(results.age);
+      });
+
       AppleHealthKit.getLatestHeight(null, (err, results) => {
         if (err) {
-            console.log("Error getting latest height: ", err);
-            return;
+          console.log("Error getting latest height: ", err);
+          return;
         }
-        console.log(results);
-        setHeight(results);
-    });
+        console.log("Latest height: ", results);
+        setHeight(Math.round(results.value));
+      });
 
-    let weight_options = {
-      unit: 'pound'
-    };
+      let weight_options = {
+        unit: "pound"
+      };
 
-    AppleHealthKit.getLatestWeight(weight_options, (err, results) => {
-      if (err) {
-        console.log("Error getting latest weight: ", err);
-        return;
-      }
-      console.log(results);
-      setWeight(results);
-    });
+      AppleHealthKit.getLatestWeight(weight_options, (err, results) => {
+        if (err) {
+          console.log("Error getting latest weight: ", err);
+          return;
+        }
+        console.log("Latest weight: ", results);
+        setWeight(results.value);
+      });
 
-    let heartrate_options = {
-      unit: 'bpm',
-      startDate: (new Date(2016,4,27)).toISOString(),
-      ascending: false,
-      limit:1
-    };
+      let heartrate_options = {
+        unit: "bpm",
+        startDate: new Date(2016, 1, 1).toISOString(),
+        ascending: false,
+        limit: 1
+      };
 
-    AppleHealthKit.getHeartRateSamples(heartrate_options, (err, results) => {
-      if (err) {
-        console.log("Error getting heart rate samples: " + err)
-        return;
-      }
-      console.log(results);
-      setHeartRate(results);
+      AppleHealthKit.getHeartRateSamples(heartrate_options, (err, results) => {
+        if (err) {
+          console.log("Error getting heart rate samples: " + err);
+          return;
+        }
+        console.log("Heart Rate: ", JSON.stringify(results[0]));
+        setHeartRate(results[0].value);
+      });
     });
-  
-    });
-  }
+  };
 
   const updateLocation = () => {
     Geolocation.getCurrentPosition(
       position => {
         const location = position.coords;
-        setLocation(location);
+        setLongitude(location.longitude);
+        setLatitude(location.latitude);
       },
       error => alert.alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
-  }
+  };
 
   return (
     <>
@@ -113,18 +129,22 @@ const App: () => React$Node = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Navi</Text>
+              <Text style={styles.sectionDescription}>Age: {age}</Text>
               <Text style={styles.sectionDescription}>
-                Height: {height.value} inches
+                Height (in): {height}
               </Text>
               <Text style={styles.sectionDescription}>
-                Weight: {weight.value} lbs
+                Weight (lbs): {weight}
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Latest heart rate (bpm): {heartRate}
               </Text>
               <Button
-                title="Upload My Health Data"
+                title="Update My Health Data"
                 onPress={() => updateHealthData()}
               />
               <Text style={styles.sectionDescription}>
-                Coordinates: {JSON.stringify(location)}
+                Coordinates: {`(${latitude}, ${longitude})`}
               </Text>
               <Button
                 title="Update My Location"
