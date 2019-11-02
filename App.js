@@ -9,25 +9,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import SettingScreen from './screens/SettingsScreen'
+import AlertScreen from './screens/AlertScreen'
 
 
-class ImageScreen extends React.Component {  
-    render() {  
-        return (  
-            <View style={styles.container}>  
-                <Text>Alert MESSAGES</Text>  
-            </View>  
-        );  
-    }  
-}  
 
-const styles = StyleSheet.create({  
-    container: {  
-        flex: 1,  
-        justifyContent: 'center',  
-        alignItems: 'center'  
-    },  
-});  
 const TabNavigator = createMaterialBottomTabNavigator(  
     {  
         Home: { screen: HomeScreen,  
@@ -51,7 +36,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 barStyle: { backgroundColor: '#f69b31' },  
             }  
         },  
-        Image: { screen: ImageScreen,  
+        Alert: { screen: AlertScreen,  
             navigationOptions:{  
                 tabBarLabel:'Messages',  
                 tabBarIcon: ({ tintColor }) => (  
