@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, Image, Button} from 'react-native';
 import MapView from "react-native-maps";
 import Geolocation from "@react-native-community/geolocation";
+import PersonDetails from '../components/PersonDetails'
 
 
 class Map extends React.Component {
@@ -10,16 +11,68 @@ class Map extends React.Component {
 
     this.state = {
         isModalVisible: false,
-        isAddDrivewayVisible: false,
         latitude: 0,
         longitude: 0,
         desLatitude: null,
         desLongitude: null, 
-        selectedDriveway: {},
-        markers: []
+        selectedPerson: {},
+
+        //Fake Data
+        markers: [{
+            id: 1,
+            name: 'Police Office One',
+            position: "NYPD",
+            coordinates: {
+                lat: 37.68,
+                lng: -122.45
+            },
+
+        }, {
+            id: 2,
+            name: 'Police Office TWO',
+            position: "NYPD Cheif",
+            coordinates: {
+                lat: 37.78,
+                lng: -122.45
+            },
+        }, 
+        {
+            id: 3,
+            name: 'Police Office Three',
+            position: "NYPD",
+            coordinates: {
+                lat: 37.79,
+                lng: -122.45
+            },
+
+        }, 
+        {
+            id: 4,
+            name: 'Police Office Four',
+            position: "NYPD",
+            coordinates: {
+                lat: 37.7,
+                lng: -122.4
+            },
+
+        }, {
+            id: 5,
+            name: 'Police Office Five',
+            position: "NYPD",
+            coordinates: {
+                lat: 37.78,
+                lng: -122.4
+            },
+
+        }
+    ]
     }
+    this.handleOnPress = this.handleOnPress.bind(this)
+    this.closeModal = this.closeModal.bind(this)
     
   }
+
+
 
   //Get A Users Location!
   async componentDidMount() {
@@ -33,8 +86,16 @@ class Map extends React.Component {
       );
 }
 
-  //Ask User for Current Location!
   
+  handleOnPress = (marker) => {
+    this.setState({ isModalVisible: true, selectedPerson: marker})
+
+  }
+
+  closeModal () {
+    this.setState({isModalVisible: false})
+  }
+
   
   render() {
 
@@ -44,8 +105,8 @@ class Map extends React.Component {
         <MapView 
           style={styles.map}
           region = {{
-            longitudeDelta: 0.004,
-            latitudeDelta: 0.005,
+            longitudeDelta: 0.1,
+            latitudeDelta: 0.1,
             latitude: this.state.latitude,
             longitude: this.state.longitude
           }}
@@ -53,15 +114,16 @@ class Map extends React.Component {
         >
 
         {this.state.markers.map(marker => {
+            console.log(marker)
             //process color
             let color = "red"
-            if(user.email === marker.userEmail) color ="blue"
+            // if(user.email === marker.userEmail) color ="blue"
 
            return (
              <MapView.Marker 
-              key={marker.docid}
+              key={marker.id}
               coordinate={{latitude: marker.coordinates.lat, longitude: marker.coordinates.lng}}
-              title={marker.titile}
+              title={marker.name}
               onPress={() => this.handleOnPress(marker)}
               pinColor={color}
              />
@@ -69,6 +131,15 @@ class Map extends React.Component {
          })}
 
         </MapView>
+
+        <View style={styles.modal}>
+          <PersonDetails isModalVisible={this.state.isModalVisible} 
+            closeModal={() => this.closeModal()} 
+            selectedPerson ={this.state.selectedPerson}
+            />
+         </View>
+
+
         </View>
     );
     }
