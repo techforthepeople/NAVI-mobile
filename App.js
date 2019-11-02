@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View,Button} from 'react-native';  
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
-import Icon from 'react-native-vector-icons/Ionicons';  
+// import Icon from 'react-native-vector-icons/Ionicons';  
 class HomeScreen extends React.Component {  
   render() {  
     return (  
@@ -53,7 +53,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Home',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>   */}
                     </View>),  
             }  
         },  
@@ -62,7 +62,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Profile',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/>  
+                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/>   */}
                     </View>),  
                 activeColor: '#f60c0d',  
                 inactiveColor: '#f65a22',  
@@ -74,7 +74,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'History',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-images'}/>  
+                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-images'}/>   */}
                     </View>),  
                 activeColor: '#615af6',  
                 inactiveColor: '#46f6d7',  
@@ -87,7 +87,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Cart',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'}/>  
+                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'}/>   */}
                     </View>),  
             }  
         },  
