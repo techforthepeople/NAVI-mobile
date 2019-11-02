@@ -3,19 +3,13 @@ import {StyleSheet, Text, View,Button} from 'react-native';
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
 // import Icon from 'react-native-vector-icons/Ionicons';  
+
+
+//Screens
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import SettingScreen from './screens/SettingsScreen'
 
-
-// class ProfileScreen extends React.Component {  
-//   render() {  
-//     return (  
-//         <View style={styles.container}>  
-//           <Text>Profile Screen</Text>  
-//         </View>  
-//     );  
-//   }  
-// }  
 
 class ImageScreen extends React.Component {  
     render() {  
@@ -26,15 +20,7 @@ class ImageScreen extends React.Component {
         );  
     }  
 }  
-class CartScreen extends React.Component {  
-    render() {  
-        return (  
-            <View style={styles.container}>  
-                <Text>Cart Screen</Text>  
-            </View>  
-        );  
-    }  
-}  
+
 const styles = StyleSheet.create({  
     container: {  
         flex: 1,  
@@ -80,13 +66,13 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 barStyle: { backgroundColor: '#67baf6' },  
             }  
         },  
-        Cart: {  
-            screen: CartScreen,  
+        Setting: {  
+            screen: SettingScreen,  
             navigationOptions:{  
-                tabBarLabel:'Messages',  
+                tabBarLabel:'Settings',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                      <Text>Messages</Text>
+                      <Text>Settings</Text>
                         {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'}/>   */}
                     </View>),  
             }  

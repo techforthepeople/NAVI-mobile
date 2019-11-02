@@ -132,7 +132,7 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Navi</Text>
+              <Text style={styles.sectionTitle}>User Name: USER ONE</Text>
               <Text style={styles.sectionDescription}>Age: {age}</Text>
               <Text style={styles.sectionDescription}>
                 Height (in): {height}

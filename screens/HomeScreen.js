@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, Image, But
 import MapView from "react-native-maps";
 import Geolocation from "@react-native-community/geolocation";
 
-const { width, height } = Dimensions.get('screen')
-
 
 class Map extends React.Component {
   constructor(props) {
@@ -72,8 +70,6 @@ class Map extends React.Component {
 
         </MapView>
         </View>
-
-        
     );
     }
   
