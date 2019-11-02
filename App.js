@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View,Button} from 'react-native';  
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
-// import Icon from 'react-native-vector-icons/Ionicons';  
+import Icon from 'react-native-vector-icons/Ionicons';  
 
 
 //Screens
@@ -15,7 +15,7 @@ class ImageScreen extends React.Component {
     render() {  
         return (  
             <View style={styles.container}>  
-                <Text>Image Screen</Text>  
+                <Text>Alert MESSAGES</Text>  
             </View>  
         );  
     }  
@@ -35,8 +35,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Home',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Text>Home</Text>
-                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>   */}
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
                     </View>),  
             }  
         },  
@@ -45,8 +44,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Profile',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                      <Text>Profile</Text>
-                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/>   */}
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/>  
                     </View>),  
                 activeColor: '#f60c0d',  
                 inactiveColor: '#f65a22',  
@@ -55,11 +53,10 @@ const TabNavigator = createMaterialBottomTabNavigator(
         },  
         Image: { screen: ImageScreen,  
             navigationOptions:{  
-                tabBarLabel:'History',  
+                tabBarLabel:'Messages',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View> 
-                      <Text>History</Text>
-                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-images'}/>   */}
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-alert'}/>  
                     </View>),  
                 activeColor: '#615af6',  
                 inactiveColor: '#46f6d7',  
@@ -72,9 +69,11 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Settings',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                      <Text>Settings</Text>
-                        {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'}/>   */}
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-settings'}/> 
                     </View>),  
+                    activeColor: '#8A2BE2',  
+                    inactiveColor: '#BA55D3',  
+                    barStyle: { backgroundColor: '#EE82EE' },  
             }  
         },  
     },  

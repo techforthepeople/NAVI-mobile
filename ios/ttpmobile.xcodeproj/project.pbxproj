@@ -21,6 +21,7 @@
 		3F31B8861AC236119DDEF990 /* libPods-ttpmobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A23DD0548AAC5FD7E3DC0F0 /* libPods-ttpmobile-tvOSTests.a */; };
 		77EEE1A5236C7F5000EC6314 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EEE1A4236C7F5000EC6314 /* HealthKit.framework */; };
 		B9492C95FA3EDAD1988C45BB /* libPods-ttpmobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486418FADCC9642DBE9C3617 /* libPods-ttpmobile-tvOS.a */; };
+		EB8C28EF236E269100A8EEC7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = EB8C28EE236E269100A8EEC7 /* Fonts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		93A977CFCEF5A033351EC7A6 /* Pods-ttpmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ttpmobileTests.debug.xcconfig"; path = "Target Support Files/Pods-ttpmobileTests/Pods-ttpmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B15DFD383838316F3C2E046B /* Pods-ttpmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ttpmobileTests.release.xcconfig"; path = "Target Support Files/Pods-ttpmobileTests/Pods-ttpmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		CDF45D7196A618E3838D8088 /* Pods-ttpmobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ttpmobile.release.xcconfig"; path = "Target Support Files/Pods-ttpmobile/Pods-ttpmobile.release.xcconfig"; sourceTree = "<group>"; };
+		EB8C28EE236E269100A8EEC7 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F1CC101D556BDA2BB6DDACAF /* Pods-ttpmobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ttpmobile.debug.xcconfig"; path = "Target Support Files/Pods-ttpmobile/Pods-ttpmobile.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				77EEE1A3236C7F4F00EC6314 /* ttpmobile.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				EB8C28EE236E269100A8EEC7 /* Fonts */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -346,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB8C28EF236E269100A8EEC7 /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
