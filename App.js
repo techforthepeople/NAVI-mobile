@@ -3,24 +3,20 @@ import {StyleSheet, Text, View,Button} from 'react-native';
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
 // import Icon from 'react-native-vector-icons/Ionicons';  
-class HomeScreen extends React.Component {  
-  render() {  
-    return (  
-        <View style={styles.container}>  
-          <Text>Home Screen</Text>  
-        </View>  
-    );  
-  }  
-}  
-class ProfileScreen extends React.Component {  
-  render() {  
-    return (  
-        <View style={styles.container}>  
-          <Text>Profile Screen</Text>  
-        </View>  
-    );  
-  }  
-}  
+import HomeScreen from './screens/HomeScreen'
+import ProfileScreen from './screens/ProfileScreen'
+
+
+// class ProfileScreen extends React.Component {  
+//   render() {  
+//     return (  
+//         <View style={styles.container}>  
+//           <Text>Profile Screen</Text>  
+//         </View>  
+//     );  
+//   }  
+// }  
+
 class ImageScreen extends React.Component {  
     render() {  
         return (  
@@ -53,6 +49,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Home',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
+                        <Text>Home</Text>
                         {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>   */}
                     </View>),  
             }  
@@ -62,6 +59,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Profile',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
+                      <Text>Profile</Text>
                         {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/>   */}
                     </View>),  
                 activeColor: '#f60c0d',  
@@ -73,7 +71,8 @@ const TabNavigator = createMaterialBottomTabNavigator(
             navigationOptions:{  
                 tabBarLabel:'History',  
                 tabBarIcon: ({ tintColor }) => (  
-                    <View>  
+                    <View> 
+                      <Text>History</Text>
                         {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-images'}/>   */}
                     </View>),  
                 activeColor: '#615af6',  
@@ -84,9 +83,10 @@ const TabNavigator = createMaterialBottomTabNavigator(
         Cart: {  
             screen: CartScreen,  
             navigationOptions:{  
-                tabBarLabel:'Cart',  
+                tabBarLabel:'Messages',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
+                      <Text>Messages</Text>
                         {/* <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'}/>   */}
                     </View>),  
             }  
