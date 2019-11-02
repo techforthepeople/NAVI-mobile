@@ -1,8 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View, Modal, Image, Button} from 'react-native';
 import AddAlert from '../components/AddAlert'
+import Alerts from '../components/Alerts'
 
 import Icon from 'react-native-vector-icons/Ionicons';  
+
+
 
 
 class AlertScreen extends React.Component {
@@ -33,10 +36,7 @@ class AlertScreen extends React.Component {
                      <Icon size={50} name={'ios-add-circle'} onPress={this.handleOnPress}/> 
                 </View >
                 <View style={styles.subContainer} >
-                <Text>
-                    ALL MESSAGES
-                </Text>
-                
+                    <Alerts />
                 </View>
 
             <View >
