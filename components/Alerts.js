@@ -21,7 +21,7 @@ const Alerts = (props) => {
                     <View>
                         <Text style={styles.description}>{props.alert.description}</Text>
                     </View>
-                    <View style={{width: 25, height: 25, borderRadius: 25, backgroundColor: 'red'}}></View>
+                    <View style={{width: 25, height: 25, borderRadius: 25, backgroundColor: props.alert.priority}}></View>
                 </View>
 
         </View>

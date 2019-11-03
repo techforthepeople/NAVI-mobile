@@ -19,6 +19,7 @@ class AlertScreen extends React.Component {
                     id: 1,
                     date: 'Sun Nov 03 2019',
                     title: 'Need Emergency Help',
+                    priority: 'red',
                     description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
                     image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
                 }, 
@@ -27,12 +28,14 @@ class AlertScreen extends React.Component {
                     date: 'Sun Nov 03 2019',
                     title: 'Need Assitance',
                     description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
+                    priority: 'red',
                     image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
                 }, 
                 {
                     id: 3,
                     date: 'Sun Nov 03 2019',
                     title: 'Minor Issue',
+                    priority: 'green',
                     description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
                     image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
                 }, 
@@ -40,6 +43,7 @@ class AlertScreen extends React.Component {
                     id: 4,
                     date: 'Sun Nov 03 2019',
                     title: 'Issue',
+                    priority: 'yellow',
                     description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
                     image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
                 }, 
@@ -47,6 +51,7 @@ class AlertScreen extends React.Component {
                     id: 5,
                     date: 'Sun Nov 03 2019',
                     title: 'Need Assitance',
+                    priority: 'green',
                     description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
                     image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
                 }, 
@@ -54,6 +59,7 @@ class AlertScreen extends React.Component {
                     id: 6,
                     date: 'Sun Nov 03 2019',
                     title: 'Need Assitance',
+                    priority: 'red',
                     description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
                     image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
                 }

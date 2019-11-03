@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, View, ScrollView, Image, StyleSheet, Button, Text, TextInput } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 
 export default class AddAlert extends Component {
@@ -44,6 +46,15 @@ export default class AddAlert extends Component {
                             this.setState({ description });
                         }}
                         />
+                        </View>
+                        <View style={{paddingHorizontal: 16, fontSize: 15}}>
+                            <RNPickerSelect 
+                            onValueChange={(value) => this.setState({ priority: value })}
+                            items={[
+                                { label: 'High', value: 'red' },
+                                { label: 'Medium', value: 'yellow' },
+                                { label: 'Low', value: 'green' },
+                            ]}/>
                         </View>
                     </View>
                     <View style={{ marginTop: 50 }}>
