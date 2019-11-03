@@ -11,7 +11,7 @@ const Alerts = (props) => {
                 />
             </View>
 
-                <View style={{margin: 5, width: 300}}>
+                <View style={{margin: 5}}>
                     <View >
                         <Text style={styles.date} >{props.alert.date}</Text>
                     </View>
