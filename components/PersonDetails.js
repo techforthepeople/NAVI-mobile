@@ -17,11 +17,10 @@ export default class PersonDetails extends Component {
       <Modal
         style ={styles.modal}
         animationType="slide"
-        transparent={false}
+        transparent={true}
         visible={this.props.isModalVisible}
       >
-        <View style={{ marginTop: 25 }}>
-        <ScrollView >
+        <View style={{ marginTop: 620, height: 200, flexDirection:'column', bottom: 0}}>
             <View style={styles.userInfo}>
                 <View style={styles.usercontainer}>
                     <Text style={styles.header}>{selectedPerson.name} </Text>
@@ -33,11 +32,7 @@ export default class PersonDetails extends Component {
             <Button title="Cancel" onPress={() => {this.props.closeModal()}} />
 
             </View>
-        </ScrollView>
-
         </View>
-
-
       </Modal>
       </View>
     )
