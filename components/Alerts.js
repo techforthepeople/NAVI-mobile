@@ -64,12 +64,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         backgroundColor: 'red'
     }
-    // color: white;
-    // background-color: black;
-    // box-shadow: inset 0 0 0 0em #ef795a;
-    // display: inline-block;
-    // margin-bottom: 1.2em;
-    // padding: 0.25em 1em 0.2em 1em;
+ 
 });
 
 export default Alerts

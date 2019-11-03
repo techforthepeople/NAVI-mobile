@@ -29,6 +29,11 @@ class AlertScreen extends React.Component {
         this.setState({isModalVisible: false})
     }
 
+    handleSumbit() {
+
+        this.setState({isModalVisible: false})
+    }
+
     render() {
         return (
             <View style={styles.container}>  
