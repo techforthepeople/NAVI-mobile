@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, View, ScrollView, Image, StyleSheet, Button, Text } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Ionicons';  
+
 export default class PersonDetails extends Component {
   constructor(props) {
     super(props)
@@ -23,18 +25,21 @@ export default class PersonDetails extends Component {
         <View style={{ marginTop: 620, height: 300, flexDirection:'column', bottom: 0}}>
             <View style={styles.userInfo}>
                 <View style={styles.usercontainer}>
+                  <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Image 
                       style={{width: 75, height: 75, borderColor: 'black', borderRadius: 75, alignSelf: 'flex-start', margin: 5}}
                        source={{uri: selectedPerson.image}}
                 />
+                <View style={{margin: 10}}>
+                <Icon size={50} name={'ios-close-circle'} onPress={() => {this.props.closeModal()}}/> 
+                </View>
+                </View>
                     <Text style={styles.header}>{selectedPerson.name} </Text>
                     <Text style={styles.subHeader}>{selectedPerson.position}</Text>
                 </View>
             </View>
             <View style={styles.personContainer}>
             <Text style={styles.personInfo}>Medical Information</Text>
-            <Button title="Cancel" onPress={() => {this.props.closeModal()}} />
-
             </View>
         </View>
         </View>
