@@ -20,9 +20,13 @@ export default class PersonDetails extends Component {
         transparent={true}
         visible={this.props.isModalVisible}
       >
-        <View style={{ marginTop: 620, height: 200, flexDirection:'column', bottom: 0}}>
+        <View style={{ marginTop: 620, height: 300, flexDirection:'column', bottom: 0}}>
             <View style={styles.userInfo}>
                 <View style={styles.usercontainer}>
+                <Image 
+                      style={{width: 75, height: 75, borderColor: 'black', borderRadius: 75, alignSelf: 'flex-start', margin: 5}}
+                       source={{uri: selectedPerson.image}}
+                />
                     <Text style={styles.header}>{selectedPerson.name} </Text>
                     <Text style={styles.subHeader}>{selectedPerson.position}</Text>
                 </View>
@@ -43,7 +47,6 @@ export default class PersonDetails extends Component {
 const styles = StyleSheet.create({
     userInfo: {
       flex: 1,
-      height: 250,
       backgroundColor: 'lightblue',
       justifyContent: "center"
       },
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     },
     personContainer: {
       flex: 1,
-      backgroundColor: 'lightgray',
+      backgroundColor: 'lightblue',
       height: 600
     }
   });

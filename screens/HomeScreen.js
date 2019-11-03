@@ -26,6 +26,7 @@ class Map extends React.Component {
                 lat: 37.68,
                 lng: -122.45
             },
+            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
 
         }, {
             id: 2,
@@ -35,6 +36,7 @@ class Map extends React.Component {
                 lat: 37.78,
                 lng: -122.45
             },
+            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
         }, 
         {
             id: 3,
@@ -44,6 +46,7 @@ class Map extends React.Component {
                 lat: 37.79,
                 lng: -122.45
             },
+            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
 
         }, 
         {
@@ -54,6 +57,7 @@ class Map extends React.Component {
                 lat: 37.7,
                 lng: -122.4
             },
+            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
 
         }, {
             id: 5,
@@ -63,6 +67,7 @@ class Map extends React.Component {
                 lat: 37.78,
                 lng: -122.4
             },
+            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
 
         }
     ]
