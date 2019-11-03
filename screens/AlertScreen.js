@@ -76,8 +76,8 @@ class AlertScreen extends React.Component {
     }
 
     handleSumbit(alert) {
-        this.setState({...this.state.alerts, alert})
-        console.log(this.state)
+        console.log(alert)
+        // this.setState({alerts: alert})
         this.setState({isModalVisible: false})
     }
 
@@ -105,7 +105,7 @@ class AlertScreen extends React.Component {
                 <AddAlert isModalVisible={this.state.isModalVisible} 
                 closeModal={() => this.closeModal()} 
                 selectedPerson ={this.state.selectedPerson}
-                handleSumbit={this.handleSumbit}
+                handleSumbit={(alert) => this.handleSumbit(alert)}
                 />
             </View>
             </View>
