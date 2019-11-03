@@ -15,11 +15,11 @@ export default class PersonDetails extends Component {
     return (
     <View styles={styles.modal}>
       <Modal
-        style ={styles.modal}
         animationType="slide"
         transparent={true}
         visible={this.props.isModalVisible}
       >
+        <View style ={{backgroundColor: '#00000080'}}>
         <View style={{ marginTop: 620, height: 300, flexDirection:'column', bottom: 0}}>
             <View style={styles.userInfo}>
                 <View style={styles.usercontainer}>
@@ -36,6 +36,7 @@ export default class PersonDetails extends Component {
             <Button title="Cancel" onPress={() => {this.props.closeModal()}} />
 
             </View>
+        </View>
         </View>
       </Modal>
       </View>
