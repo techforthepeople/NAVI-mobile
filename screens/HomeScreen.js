@@ -69,7 +69,36 @@ class Map extends React.Component {
             },
             image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
 
-        }
+        }, {
+          id: 6,
+        name: 'Police Office Six',
+        position: "NYPD",
+        coordinates: {
+            lat: 40.82,
+            lng: -73.84
+        },
+        image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
+
+        }, {id: 7,
+        name: 'Police Office Seven',
+        position: "NYPD",
+        coordinates: {
+            lat: 40.81,
+            lng: -73.83
+        },
+        image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
+
+}, {id: 8,
+  name: 'Police Office Eight',
+  position: "NYPD",
+  coordinates: {
+      lat: 40.80,
+      lng: -73.83
+  },
+  image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
+
+}, 
+
     ]
     }
     this.handleOnPress = this.handleOnPress.bind(this)
