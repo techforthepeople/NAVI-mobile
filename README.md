@@ -31,16 +31,9 @@ The Tech to Protect coding hacakthon is designed to inspire participants to conn
 ## Screenshots
 
 <img src="https://user-images.githubusercontent.com/36509646/68137299-bc87c300-fef4-11e9-83de-9cd626d6beaa.png" alt="alt text" width="200" height="400">
-
-
-![Home Screen](https://user-images.githubusercontent.com/36509646/68137299-bc87c300-fef4-11e9-83de-9cd626d6beaa.png =250x)
-
-![Details](https://user-images.githubusercontent.com/36509646/68137375-dfb27280-fef4-11e9-885a-0c19470cafa1.png)
-
-![Profile Infromation](https://user-images.githubusercontent.com/36509646/68137429-f6f16000-fef4-11e9-88cf-ffa798fa3718.png)
-
-![Messaege Board](https://user-images.githubusercontent.com/36509646/68137461-0670a900-fef5-11e9-8533-e232979709e3.png)
-
+<img src="https://user-images.githubusercontent.com/36509646/68137375-dfb27280-fef4-11e9-885a-0c19470cafa1.png" alt="alt text" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/36509646/68137429-f6f16000-fef4-11e9-88cf-ffa798fa3718.png" alt="alt text" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/36509646/68137461-0670a900-fef5-11e9-8533-e232979709e3.png" alt="alt text" width="200" height="400">
 
 
 ## :video_camera: Demo Presentation
