@@ -30,7 +30,7 @@ The Tech to Protect coding hacakthon is designed to inspire participants to conn
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/36509646/68137299-bc87c300-fef4-11e9-83de-9cd626d6beaa.png" alt="alt text" width="200" height="200">
+<img src="https://user-images.githubusercontent.com/36509646/68137299-bc87c300-fef4-11e9-83de-9cd626d6beaa.png" alt="alt text" width="200" height="400">
 
 
 ![Home Screen](https://user-images.githubusercontent.com/36509646/68137299-bc87c300-fef4-11e9-83de-9cd626d6beaa.png =250x)
