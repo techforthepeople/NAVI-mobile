@@ -1,17 +1,17 @@
 #  Solidarity - Mobile Application
 
-Winning solultion for IBM's TechToProtect Challenge! iOS Mobile Application for Emergency Responders. Built in conjunction with Web Application and Sensor. Click here for information https://github.com/techforthepeople
+Winning solution for IBM's TechToProtect Challenge! iOS Mobile Application for Emergency Responders. Built in conjunction with Web Application and Sensor. Click here for information https://github.com/techforthepeople
 
 ## Motivation
 
-The Tech to Protect coding hacakthon is designed to inspire participants to connect, collaborate, and create technologies of the future for public safety. Solidarity, provides an integrated, all in one platform for Emergency Responders to locate each other and detect when they are in danger. This repo contains code for the mobile application.
+The Tech to Protect Challenge is designed to inspire participants to connect, collaborate, and create technologies of the future for public safety. Solidarity provides an integrated, all in one platform for Emergency Responders to locate each other and detect when they are in danger. This repo contains code for the mobile application.
 
 ## Functionality
 
 * Users can view all Emergency Responders in the area and click to see basic information
-* Users can see their own health information from Apple's Health Kit
-* User can get real time updates of their Health Rate (while wearing Apple Watch) 
-* A User can chat with other emergency personal on the application
+* Users can see their own health information from Apple's HealthKit
+* User can get real-time updates of their Heart Rate (while wearing Apple Watch or other wearable connected to the Apple Health app) 
+* User can chat with other emergency personnel on the application
 
 ## :hammer_and_pick: Built With
 
@@ -19,7 +19,7 @@ The Tech to Protect coding hacakthon is designed to inspire participants to conn
 * React Native
 * CSS
 * React Native Maps
-* Apple's Health Kit
+* Apple HealthKit
 
 ## :writing_hand: Authors
 
