@@ -1,4 +1,4 @@
-#  Solidarity
+#  Solidarity - Mobile Application
 
 Winning soultion for IBM's TechToProtect Challenege! IOS Mobile Application for Emergency Responders. Built in conjunction with Web Application and Sensor. Click here for information https://github.com/techforthepeople
 
