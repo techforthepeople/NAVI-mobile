@@ -4,7 +4,7 @@ Winning soultion for IBM's TechToProtect Challenege! IOS Mobile Application for 
 
 ## Motivation
 
-The Tech to Protect coding hacakthon is designed to inspire participants to connect, collaborate, and create technologies of the future for public safety. Solidarity, provids an integrated, all in one platform for Emergency Responders to locate each other and detect when they are in danger. This repo contains code for the mobile application.
+The Tech to Protect coding hacakthon is designed to inspire participants to connect, collaborate, and create technologies of the future for public safety. Solidarity, provides an integrated, all in one platform for Emergency Responders to locate each other and detect when they are in danger. This repo contains code for the mobile application.
 
 ## Functionality
 
