@@ -1,6 +1,6 @@
 #  Solidarity - Mobile Application
 
-Winning soultion for IBM's TechToProtect Challenege! IOS Mobile Application for Emergency Responders. Built in conjunction with Web Application and Sensor. Click here for information https://github.com/techforthepeople
+Winning solultion for IBM's TechToProtect Challenge! iOS Mobile Application for Emergency Responders. Built in conjunction with Web Application and Sensor. Click here for information https://github.com/techforthepeople
 
 ## Motivation
 
@@ -24,7 +24,7 @@ The Tech to Protect coding hacakthon is designed to inspire participants to conn
 ## :writing_hand: Authors
 
 * Andrew O’Grady - [aogrady3](https://github.com/aogrady3)
-* Visnu Ravi - [vishnuravi](https://github.com/vishnuravi)
+* Vishnu Ravi - [vishnuravi](https://github.com/vishnuravi)
 * Vincent Tse - [Greashun](https://github.com/Greashun)
 * David P - [droza](https://github.com/droza)
 * Nayyif OUSSAMATOU - [bkkenzo](https://github.com/bkkenzo)
