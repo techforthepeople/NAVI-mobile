@@ -30,7 +30,7 @@ The Tech to Protect coding hacakthon is designed to inspire participants to conn
 
 ## Screenshots
 
-![Alt text](/../screenshots/screenshots/Simulator Screen Shot - iPhone 11 - 2019-11-03 at 12.06.56.png "Home")
+![Alt text](/../screenshots/screenshots/Simulator Screen Shot - iPhone 11 - 2019-11-03 at 12.06.56.png)
 
 
 ## :video_camera: Demo Presentation
