@@ -1,38 +1,37 @@
-/**
- * NAVI -
- * Mobile App for
- * Tech to Protect Challenge
- */
-
 import React, { useState, useEffect } from "react";
+
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  StatusBar,
-  Button
+  StatusBar
 } from "react-native";
 
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import {
+  Button
+} from "react-native-elements"
 
 import Geolocation from "@react-native-community/geolocation";
 
 import AppleHealthKit from "rn-apple-healthkit";
 
-const App: () => React$Node = () => {
-  const [longitude, setLongitude] = useState(0);
+const ProfileScreen = () => {
 
-  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState();
 
-  const [height, setHeight] = useState(0);
+  const [latitude, setLatitude] = useState();
 
-  const [weight, setWeight] = useState(0);
+  const [altitude, setAltitude] = useState();
 
-  const [heartRate, setHeartRate] = useState(0);
+  const [height, setHeight] = useState();
 
-  const [age, setAge] = useState(0);
+  const [weight, setWeight] = useState();
+
+  const [heartRate, setHeartRate] = useState();
+
+  const [age, setAge] = useState();
 
   useEffect(() => {
     updateHealthData();
@@ -58,7 +57,7 @@ const App: () => React$Node = () => {
           return;
         }
         console.log("Date of birth: ", results);
-        setAge(results.age);
+          setAge(results.age)
       });
 
       AppleHealthKit.getLatestHeight(null, (err, results) => {
@@ -117,6 +116,10 @@ const App: () => React$Node = () => {
     );
   };
 
+  const updateSensorData = () => {
+    console.log("Update sensor data");
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -132,7 +135,7 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>User Name: USER ONE</Text>
+              <Text style={styles.sectionTitle}>Health Data</Text>
               <Text style={styles.sectionDescription}>Age: {age}</Text>
               <Text style={styles.sectionDescription}>
                 Height (in): {height}
@@ -144,18 +147,41 @@ const App: () => React$Node = () => {
                 Latest heart rate (bpm): {heartRate}
               </Text>
               <Button
-                title="Update My Health Data"
+                title="Update"
                 onPress={() => updateHealthData()}
               />
+              </View>
+              <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Location</Text>
               <Text style={styles.sectionDescription}>
-                Coordinates: {`(${latitude}, ${longitude})`}
+                Latitude: {latitude}
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Longitude: {longitude}
               </Text>
               <Button
-                title="Update My Location"
+                title="Update"
                 onPress={() => updateLocation()}
               />
+              </View>
+              <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Sensors</Text>
+              <Text style={styles.sectionDescription}>
+                Temperature:
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Humidity:
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Pressure:
+              </Text>
+              <Button
+                title="Update"
+                onPress={() => updateSensorData()}
+              />
+              </View>
             </View>
-          </View>
+          
         </ScrollView>
       </SafeAreaView>
     </>
@@ -164,41 +190,31 @@ const App: () => React$Node = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter
+    backgroundColor: 'white'
   },
   engine: {
     position: "absolute",
     right: 0
   },
   body: {
-    backgroundColor: Colors.white
+    backgroundColor: 'white'
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 20,
     paddingHorizontal: 24
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: "600",
-    color: Colors.black
+    color: 'black'
   },
   sectionDescription: {
     marginTop: 8,
+    marginBottom: 10,
     fontSize: 18,
     fontWeight: "400",
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: "700"
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: "600",
-    padding: 4,
-    paddingRight: 12,
-    textAlign: "right"
+    color: 'grey'
   }
 });
 
-export default App;
+export default ProfileScreen;
