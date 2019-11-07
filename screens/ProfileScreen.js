@@ -33,6 +33,8 @@ const ProfileScreen = () => {
 
   const [accessToken, setAccessToken] = useState(null);
 
+  const [username, setUsername] = useState();
+
   useEffect(() => {
     updateHealthData();
     updateLocation();
@@ -131,8 +133,10 @@ const ProfileScreen = () => {
         scope: "openid profile email"
       })
       .then(credentials => {
-        Alert.alert("AccessToken: " + credentials.accessToken);
         setAccessToken(credentials.accessToken);
+        let jwt_decode = require('jwt-decode');
+        let decoded_idToken = jwt_decode(credentials.idToken);
+        setUsername(decoded_idToken.name);
       })
       .catch(error => console.log(error));
   };
@@ -141,7 +145,7 @@ const ProfileScreen = () => {
     auth0.webAuth
       .clearSession({})
       .then(success => {
-        Alert.alert("Logged out!");
+        Alert.alert("You are now logged out.");
         setAccessToken(null);
       })
       .catch(error => {
@@ -166,7 +170,10 @@ const ProfileScreen = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text>You are{loggedIn ? " " : " not "}logged in. </Text>
+              <Text style={styles.sectionTitle}>My Profile</Text>
+              <Text style={styles.sectionDescription}>
+                {loggedIn ? `Logged in as ${username}` : "Not logged in."}
+              </Text>
               <Button
                 onPress={loggedIn ? () => logout() : () => login()}
                 title={loggedIn ? "Log Out" : "Log In"}
