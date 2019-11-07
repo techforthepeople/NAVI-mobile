@@ -6,24 +6,22 @@ import {
   ScrollView,
   View,
   Text,
-  StatusBar
+  StatusBar,
+  Alert
 } from "react-native";
 
-import {
-  Button
-} from "react-native-elements"
+import { Button } from "react-native-elements";
 
 import Geolocation from "@react-native-community/geolocation";
 
 import AppleHealthKit from "rn-apple-healthkit";
 
-const ProfileScreen = () => {
+import Auth0 from "react-native-auth0";
 
+const ProfileScreen = () => {
   const [longitude, setLongitude] = useState();
 
   const [latitude, setLatitude] = useState();
-
-  const [altitude, setAltitude] = useState();
 
   const [height, setHeight] = useState();
 
@@ -32,6 +30,8 @@ const ProfileScreen = () => {
   const [heartRate, setHeartRate] = useState();
 
   const [age, setAge] = useState();
+
+  const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
     updateHealthData();
@@ -57,7 +57,7 @@ const ProfileScreen = () => {
           return;
         }
         console.log("Date of birth: ", results);
-          setAge(results.age)
+        setAge(results.age);
       });
 
       AppleHealthKit.getLatestHeight(null, (err, results) => {
@@ -94,12 +94,12 @@ const ProfileScreen = () => {
           console.log("Error getting heart rate samples: " + err);
           return;
         }
-        if(!results[0]) {
-            console.log('Error')
-          } else {
+        if (!results[0]) {
+          console.log("Error");
+        } else {
           console.log("Heart Rate: ", JSON.stringify(results[0]));
           setHeartRate(results[0].value);
-          }
+        }
       });
     });
   };
@@ -118,7 +118,38 @@ const ProfileScreen = () => {
 
   const updateSensorData = () => {
     console.log("Update sensor data");
-  }
+  };
+
+  const auth0 = new Auth0({
+    domain: "solidarity-ttp.auth0.com",
+    clientId: "1oCg3QWNaPzorKUSediAtIiWIXg02tNB"
+  });
+
+  const login = () => {
+    auth0.webAuth
+      .authorize({
+        scope: "openid profile email"
+      })
+      .then(credentials => {
+        Alert.alert("AccessToken: " + credentials.accessToken);
+        setAccessToken(credentials.accessToken);
+      })
+      .catch(error => console.log(error));
+  };
+
+  const logout = () => {
+    auth0.webAuth
+      .clearSession({})
+      .then(success => {
+        Alert.alert("Logged out!");
+        setAccessToken(null);
+      })
+      .catch(error => {
+        console.log("Log out cancelled");
+      });
+  };
+
+  let loggedIn = accessToken === null ? false : true;
 
   return (
     <>
@@ -135,6 +166,11 @@ const ProfileScreen = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
+              <Text>You are{loggedIn ? " " : " not "}logged in. </Text>
+              <Button
+                onPress={loggedIn ? () => logout() : () => login()}
+                title={loggedIn ? "Log Out" : "Log In"}
+              />
               <Text style={styles.sectionTitle}>Health Data</Text>
               <Text style={styles.sectionDescription}>Age: {age}</Text>
               <Text style={styles.sectionDescription}>
@@ -146,12 +182,9 @@ const ProfileScreen = () => {
               <Text style={styles.sectionDescription}>
                 Latest heart rate (bpm): {heartRate}
               </Text>
-              <Button
-                title="Update"
-                onPress={() => updateHealthData()}
-              />
-              </View>
-              <View style={styles.sectionContainer}>
+              <Button title="Update" onPress={() => updateHealthData()} />
+            </View>
+            <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Location</Text>
               <Text style={styles.sectionDescription}>
                 Latitude: {latitude}
@@ -159,29 +192,16 @@ const ProfileScreen = () => {
               <Text style={styles.sectionDescription}>
                 Longitude: {longitude}
               </Text>
-              <Button
-                title="Update"
-                onPress={() => updateLocation()}
-              />
-              </View>
-              <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Sensors</Text>
-              <Text style={styles.sectionDescription}>
-                Temperature:
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Humidity:
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Pressure:
-              </Text>
-              <Button
-                title="Update"
-                onPress={() => updateSensorData()}
-              />
-              </View>
+              <Button title="Update" onPress={() => updateLocation()} />
             </View>
-          
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Sensors</Text>
+              <Text style={styles.sectionDescription}>Temperature:</Text>
+              <Text style={styles.sectionDescription}>Humidity:</Text>
+              <Text style={styles.sectionDescription}>Pressure:</Text>
+              <Button title="Update" onPress={() => updateSensorData()} />
+            </View>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -190,14 +210,14 @@ const ProfileScreen = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: 'white'
+    backgroundColor: "white"
   },
   engine: {
     position: "absolute",
     right: 0
   },
   body: {
-    backgroundColor: 'white'
+    backgroundColor: "white"
   },
   sectionContainer: {
     marginTop: 20,
@@ -206,14 +226,14 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: "600",
-    color: 'black'
+    color: "black"
   },
   sectionDescription: {
     marginTop: 8,
     marginBottom: 10,
     fontSize: 18,
     fontWeight: "400",
-    color: 'grey'
+    color: "grey"
   }
 });
 

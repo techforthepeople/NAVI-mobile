@@ -4,12 +4,16 @@ import MapView from "react-native-maps";
 import Geolocation from "@react-native-community/geolocation";
 import PersonDetails from '../components/PersonDetails'
 
+import {
+  Header
+} from "react-native-elements"
 
 class Map extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+        accessToken: null,
         isModalVisible: false,
         latitude: 0,
         longitude: 0,
@@ -106,6 +110,30 @@ class Map extends React.Component {
     
   }
 
+  _onLogin = () => {
+    auth0.webAuth
+        .authorize({
+            scope: 'openid profile email'
+        })
+        .then(credentials => {
+            Alert.alert('AccessToken: ' + credentials.accessToken);
+            this.setState({ accessToken: credentials.accessToken });
+        })
+        .catch(error => console.log(error));
+};
+
+_onLogout = () => {
+    auth0.webAuth
+        .clearSession({})
+        .then(success => {
+            Alert.alert('Logged out!');
+            this.setState({ accessToken: null });
+        })
+        .catch(error => {
+            console.log('Log out cancelled');
+        });
+};
+
 
 
   //Get A Users Location!
@@ -131,7 +159,9 @@ class Map extends React.Component {
   }
 
   
+
   render() {
+    let loggedIn = this.state.accessToken === null ? false : true;
 
       return (
         //Render MapVIew
