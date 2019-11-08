@@ -1,4 +1,4 @@
-#  Solidarity (NAVI) - Mobile Application
+#  NAVI (Solidarity) - Mobile Application
 
 Winning solution for IBM's TechToProtect Challenge! iOS Mobile Application for Emergency Responders. Built in conjunction with Web Application and Sensor. Click here for information https://github.com/techforthepeople
 
