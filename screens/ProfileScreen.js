@@ -18,6 +18,8 @@ import AppleHealthKit from "rn-apple-healthkit";
 
 import Auth0 from "react-native-auth0";
 
+import axios from 'axios'
+
 const ProfileScreen = () => {
   const [longitude, setLongitude] = useState();
 
@@ -35,12 +37,16 @@ const ProfileScreen = () => {
 
   const [username, setUsername] = useState();
 
+  const [userID, setUserId] = useState();
+
+
   useEffect(() => {
     updateHealthData();
     updateLocation();
   });
 
   const updateHealthData = () => {
+
     let healthkit_init_options = {
       permissions: {
         read: ["Height", "Weight", "DateOfBirth", "HeartRate"]
@@ -101,9 +107,13 @@ const ProfileScreen = () => {
         } else {
           console.log("Heart Rate: ", JSON.stringify(results[0]));
           setHeartRate(results[0].value);
+          // axios.post('https://solidarity-backend-030.onrender.com/users/')
         }
       });
     });
+
+    console.log('UserIDDD', userID)
+
   };
 
   const updateLocation = () => {
@@ -136,6 +146,11 @@ const ProfileScreen = () => {
         setAccessToken(credentials.accessToken);
         let jwt_decode = require('jwt-decode');
         let decoded_idToken = jwt_decode(credentials.idToken);
+        let id = decoded_idToken.sub
+        console.log(id)
+        id = id.split('auth0|')
+        setUserId(id[1])
+        console.log(id[1])
         setUsername(decoded_idToken.name);
       })
       .catch(error => console.log(error));
