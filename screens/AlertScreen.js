@@ -1,11 +1,7 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
   View,
-  Modal,
-  Image,
-  Button,
   ScrollView
 } from "react-native";
 import AddAlert from "../components/AddAlert";
@@ -25,11 +21,12 @@ class AlertScreen extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
     this.getMessages = this.getMessages.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
   }
 
   componentDidMount() {
     this.getMessages();
-  } 
+  }
 
   async getMessages() {
     try {
@@ -38,6 +35,24 @@ class AlertScreen extends React.Component {
       );
       const messages = response.data;
       this.setState({ alerts: messages });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async sendMessage(message) {
+    try {
+      const response = await Axios.post(
+        "https://solidarity-backend-030.onrender.com/messages",
+        {
+          timestamp: message.timestamp,
+          subject: message.subject,
+          body: message.body,
+          priority: message.priority
+        }
+      );
+      console.log(response);
+      this.getMessages();
     } catch (error) {
       console.error(error);
     }
@@ -53,8 +68,7 @@ class AlertScreen extends React.Component {
   }
 
   handleSumbit(alert) {
-    console.log(alert);
-    this.setState({ alerts: [...this.state.alerts, alert] });
+    this.sendMessage(alert);
     this.setState({ isModalVisible: false });
   }
 

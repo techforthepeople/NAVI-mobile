@@ -1,6 +1,17 @@
 import React from "react";
 import Moment from "react-moment";
-import { StyleSheet, Text, View, Modal, Image, Button } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+
+const priorityColor = (priority) => {
+  switch(priority){
+    case "high":
+      return 'red';
+    case "medium":
+      return 'yellow';
+    case "low":
+      return 'green';
+  }
+}
 
 const Alerts = props => {
   return (
@@ -22,7 +33,9 @@ const Alerts = props => {
       <View style={{ margin: 5 }}>
         <View>
           <Text style={styles.timestamp}>
-            <Moment fromNow element={Text}>{props.alert.timestamp}</Moment>
+            <Moment fromNow element={Text}>
+              {props.alert.timestamp}
+            </Moment>
           </Text>
         </View>
         <View>
@@ -36,7 +49,7 @@ const Alerts = props => {
             width: 25,
             height: 25,
             borderRadius: 25,
-            backgroundColor: props.alert.priority
+            backgroundColor: priorityColor(props.alert.priority)
           }}
         ></View>
       </View>
@@ -57,6 +70,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Arial",
     backgroundColor: "black",
+    width: 100,
     marginBottom: 1.2,
     padding: 1,
     marginBottom: 5
