@@ -13,6 +13,7 @@ export default class PersonDetails extends Component {
 
   render() {
       const selectedPerson = this.props.selectedPerson
+      console.log('person', selectedPerson)
 
     return (
     <View styles={styles.modal}>
@@ -28,13 +29,13 @@ export default class PersonDetails extends Component {
                   <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Image 
                       style={{width: 75, height: 75, borderColor: 'black', borderRadius: 75, alignSelf: 'flex-start', margin: 5}}
-                       source={{uri: selectedPerson.image}}
+                       source={require("./img/user-placeholder.png")}
                 />
                 <View style={{margin: 10}}>
-                <Icon size={50} name={'ios-close-circle'} onPress={() => {this.props.closeModal()}}/> 
+                <Icon size={50} name={'ios-close-circle-outline'} onPress={() => {this.props.closeModal()}}/> 
                 </View>
                 </View>
-                    <Text style={styles.header}>{selectedPerson.name} </Text>
+                    <Text style={styles.header}>{selectedPerson.firstName} {selectedPerson.lastName} </Text>
                     <Text style={styles.subHeader}>{selectedPerson.position}</Text>
                 </View>
             </View>
@@ -53,7 +54,7 @@ export default class PersonDetails extends Component {
 const styles = StyleSheet.create({
     userInfo: {
       flex: 1,
-      backgroundColor: 'lightblue',
+      backgroundColor: 'rgba(52, 52, 52, 0.8)',      
       justifyContent: "center"
       },
       usercontainer: {
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     },
     personContainer: {
       flex: 1,
-      backgroundColor: 'lightblue',
+      backgroundColor: 'rgba(52, 52, 52, 0.8)',      
       height: 600
     }
   });

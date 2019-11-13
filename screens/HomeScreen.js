@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, Image, But
 import MapView from "react-native-maps";
 import Geolocation from "@react-native-community/geolocation";
 import PersonDetails from '../components/PersonDetails'
+import axios from 'axios'
 
 import {
   Header
@@ -22,88 +23,7 @@ class Map extends React.Component {
         selectedPerson: {},
 
         //Fake Data
-        markers: [{
-            id: 1,
-            name: 'Police Office One',
-            position: "NYPD",
-            coordinates: {
-                lat: 37.68,
-                lng: -122.45
-            },
-            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-        }, {
-            id: 2,
-            name: 'Police Office TWO',
-            position: "NYPD Cheif",
-            coordinates: {
-                lat: 37.78,
-                lng: -122.45
-            },
-            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-        }, 
-        {
-            id: 3,
-            name: 'Police Office Three',
-            position: "NYPD",
-            coordinates: {
-                lat: 37.79,
-                lng: -122.45
-            },
-            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-        }, 
-        {
-            id: 4,
-            name: 'Police Office Four',
-            position: "NYPD",
-            coordinates: {
-                lat: 37.7,
-                lng: -122.4
-            },
-            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-        }, {
-            id: 5,
-            name: 'Police Office Five',
-            position: "NYPD",
-            coordinates: {
-                lat: 37.78,
-                lng: -122.4
-            },
-            image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-        }, {
-          id: 6,
-        name: 'Police Office Six',
-        position: "NYPD",
-        coordinates: {
-            lat: 40.82,
-            lng: -73.84
-        },
-        image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-        }, {id: 7,
-        name: 'Police Office Seven',
-        position: "NYPD",
-        coordinates: {
-            lat: 40.81,
-            lng: -73.83
-        },
-        image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-}, {id: 8,
-  name: 'Police Office Eight',
-  position: "NYPD",
-  coordinates: {
-      lat: 40.80,
-      lng: -73.83
-  },
-  image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-
-}, 
-
-    ]
+        markers: []
     }
     this.handleOnPress = this.handleOnPress.bind(this)
     this.closeModal = this.closeModal.bind(this)
@@ -146,7 +66,13 @@ _onLogout = () => {
         error => alert.alert(error.message),
         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
-}
+
+      const {data} = await axios.get('https://solidarity-backend-030.onrender.com/location/')
+
+      this.setState({ markers: data })
+
+      console.log('MARKER DATA', this.state.markers)
+    }
 
   
   handleOnPress = (marker) => {
@@ -178,15 +104,17 @@ _onLogout = () => {
         >
 
         {this.state.markers.map(marker => {
-            console.log(marker)
             //process color
             let color = "red"
             // if(user.email === marker.userEmail) color ="blue"
 
            return (
              <MapView.Marker 
-              key={marker.id}
-              coordinate={{latitude: marker.coordinates.lat, longitude: marker.coordinates.lng}}
+              key={marker.authId}
+              coordinate={{
+                latitude: Number(marker.location_histories[marker.location_histories.length-1].lat), 
+                longitude: Number(marker.location_histories[marker.location_histories.length-1].long)
+              }}
               title={marker.name}
               onPress={() => this.handleOnPress(marker)}
               pinColor={color}
