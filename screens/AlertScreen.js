@@ -1,138 +1,122 @@
-import React from 'react'
-import { StyleSheet, Text, View, Modal, Image, Button, ScrollView} from 'react-native';
-import AddAlert from '../components/AddAlert'
-import Alerts from '../components/Alerts'
-
-import Icon from 'react-native-vector-icons/Ionicons';  
-
-
-
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  ScrollView
+} from "react-native";
+import AddAlert from "../components/AddAlert";
+import Alerts from "../components/Alerts";
+import Axios from "axios";
+import Icon from "react-native-vector-icons/Ionicons";
 
 class AlertScreen extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isModalVisible: false,
-            //dummy data
-            alerts : [
-                {
-                    id: 1,
-                    date: 'Sun Nov 03 2019',
-                    title: 'Need Emergency Help',
-                    priority: 'red',
-                    description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
-                    image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-                }, 
-                {
-                    id: 2,
-                    date: 'Sun Nov 03 2019',
-                    title: 'Need Assitance',
-                    description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
-                    priority: 'red',
-                    image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-                }, 
-                {
-                    id: 3,
-                    date: 'Sun Nov 03 2019',
-                    title: 'Minor Issue',
-                    priority: 'green',
-                    description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
-                    image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-                }, 
-                {
-                    id: 4,
-                    date: 'Sun Nov 03 2019',
-                    title: 'Issue',
-                    priority: 'yellow',
-                    description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
-                    image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-                }, 
-                {
-                    id: 5,
-                    date: 'Sun Nov 03 2019',
-                    title: 'Need Assitance',
-                    priority: 'green',
-                    description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
-                    image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-                }, 
-                {
-                    id: 6,
-                    date: 'Sun Nov 03 2019',
-                    title: 'Need Assitance',
-                    priority: 'red',
-                    description: 'dlknvdsl vcdks vklds vd svosd nvpdos vsd vdnnmodjvo vndsoivjdsovs vdksnvopdmnx;m vdopv d', 
-                    image: 'https://i2.wp.com/blackyouthproject.com/wp-content/uploads/2018/08/BettyShelby.jpg?fit=840%2C630'
-                }
-            ]
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalVisible: false,
+      alerts: []
+    };
+
+    this.handleOnPress = this.handleOnPress.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleSumbit = this.handleSumbit.bind(this);
+    this.getMessages = this.getMessages.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
+  }
+
+  componentDidMount() {
+    this.getMessages();
+  }
+
+  async getMessages() {
+    try {
+      const response = await Axios.get(
+        "https://solidarity-backend-030.onrender.com/messages"
+      );
+      const messages = response.data;
+      this.setState({ alerts: messages });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async sendMessage(message) {
+    try {
+      const response = await Axios.post(
+        "https://solidarity-backend-030.onrender.com/messages",
+        {
+          timestamp: message.timestamp,
+          subject: message.subject,
+          body: message.body,
+          priority: message.priority
         }
-        
-        this.handleOnPress = this.handleOnPress.bind(this)
-        this.closeModal = this.closeModal.bind(this)
-        this.handleSumbit = this.handleSumbit.bind(this)
-
+      );
+      console.log(response);
+      this.getMessages();
+    } catch (error) {
+      console.error(error);
     }
+  }
 
-    handleOnPress() {
-        this.setState({isModalVisible: true})
-        console.log(this.state.isModalVisible)
-    }
+  handleOnPress() {
+    this.setState({ isModalVisible: true });
+    console.log(this.state.isModalVisible);
+  }
 
-    closeModal() {
-        this.setState({isModalVisible: false})
-    }
+  closeModal() {
+    this.setState({ isModalVisible: false });
+  }
 
-    handleSumbit(alert) {
-        console.log(alert)
-        this.setState({alerts: [...this.state.alerts, alert]})
-        this.setState({isModalVisible: false})
-    }
+  handleSumbit(alert) {
+    this.sendMessage(alert);
+    this.setState({ isModalVisible: false });
+  }
 
-    render() {
-        return (
-            <View style={styles.container}>  
-                <View style={styles.icon} >
-                     <Icon size={50} name={'ios-add-circle'} onPress={this.handleOnPress}/> 
-                </View >
-                <View style={styles.subContainer}>
-                <ScrollView  >
-                    {this.state.alerts.map(alert => {
-                        return (
-                       
-                        <Alerts alert={alert}
-                        key={alert.id}
-                        />
-                       
-                        )
-                    })}
-                </ScrollView>
-                </View>
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.icon}>
+          <Icon
+            size={50}
+            name={"ios-add-circle"}
+            onPress={this.handleOnPress}
+          />
+        </View>
+        <View style={styles.subContainer}>
+          <ScrollView>
+            {this.state.alerts.map(alert => {
+              return <Alerts alert={alert} key={alert.id} />;
+            })}
+          </ScrollView>
+        </View>
 
-            <View >
-                <AddAlert isModalVisible={this.state.isModalVisible} 
-                closeModal={() => this.closeModal()} 
-                selectedPerson ={this.state.selectedPerson}
-                handleSumbit={(alert) => this.handleSumbit(alert)}
-                />
-            </View>
-            </View>
-        )
-    }
+        <View>
+          <AddAlert
+            isModalVisible={this.state.isModalVisible}
+            closeModal={() => this.closeModal()}
+            selectedPerson={this.state.selectedPerson}
+            handleSumbit={alert => this.handleSumbit(alert)}
+          />
+        </View>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({  
-    container: {  
-        flex:1,
-    },  
-    icon: {
-        flex: 1, 
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        marginRight: 25,
-    },
-    subContainer: {
-        flex: 6,
-        alignItems: 'center'  
-    }
-});  
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  icon: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    marginRight: 25
+  },
+  subContainer: {
+    flex: 6,
+    alignItems: "center"
+  }
+});
 
-export default AlertScreen
+export default AlertScreen;
