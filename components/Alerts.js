@@ -2,16 +2,30 @@ import React from "react";
 import Moment from "react-moment";
 import { StyleSheet, Text, View, Image } from "react-native";
 
-const priorityColor = (priority) => {
-  switch(priority){
+// color code the messages based on priority
+const priorityColor = priority => {
+  switch (priority) {
     case "high":
-      return 'red';
+      return "red";
     case "medium":
-      return 'yellow';
+      return "yellow";
     case "low":
-      return 'green';
+      return "green";
   }
-}
+};
+
+// check tone analyzer data to find evidence of distress
+const isDistressed = toneData => {
+  let isDistressed = false;
+  if (toneData.tones !== undefined) {
+    toneData.tones.forEach(d => {
+      if (d.tone_id === "sadness" || d.tone_id === "fear") {
+        isDistressed = true;
+      }
+    });
+  }
+  return isDistressed;
+};
 
 const Alerts = props => {
   return (
@@ -24,11 +38,23 @@ const Alerts = props => {
             borderColor: "black",
             borderRadius: 75,
             alignSelf: "flex-start",
-            margin: 5
+            marginTop: 15, 
           }}
           source={require("./img/user-placeholder.png")}
         />
+        <Text style={{ alignSelf: "auto"}}>
+          Username
+        </Text>
       </View>
+      <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 25,
+            backgroundColor: priorityColor(props.alert.priority),
+            marginTop: 15
+          }}
+        ></View>
 
       <View style={{ margin: 5 }}>
         <View>
@@ -44,14 +70,11 @@ const Alerts = props => {
         <View>
           <Text style={styles.body}>{props.alert.body}</Text>
         </View>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 25,
-            backgroundColor: priorityColor(props.alert.priority)
-          }}
-        ></View>
+        <View>
+          {isDistressed(props.alert.tone) ? (
+            <Text style={styles.distressed}>Distress detected</Text>
+          ) : null}
+        </View>
       </View>
     </View>
   );
@@ -83,6 +106,13 @@ const styles = StyleSheet.create({
   body: {
     fontFamily: "Arial",
     fontSize: 15,
+    marginBottom: 5
+  },
+  distressed: {
+    color: "white",
+    backgroundColor: "red",
+    fontWeight: "600",
+    marginTop: 5,
     marginBottom: 5
   }
 });
