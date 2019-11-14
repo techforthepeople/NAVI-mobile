@@ -41,7 +41,6 @@ class AlertScreen extends React.Component {
           data: { text: message }
         }
       );
-      console.log(response.data.document_tone);
       return response.data.document_tone;
     } catch (error) {
       console.log(error);
@@ -61,7 +60,7 @@ class AlertScreen extends React.Component {
   }
 
   async sendMessage(message) {
-    let tone = await this.getTone(message.body);
+    let tone = await this.getTone(message.subject + " " + message.body);
     console.log(tone);
     try {
       const response = await Axios.post(
@@ -74,7 +73,6 @@ class AlertScreen extends React.Component {
           tone: tone
         }
       );
-      console.log(response);
       this.getMessages();
     } catch (error) {
       console.error(error);

@@ -50,9 +50,9 @@ const Alerts = props => {
       <View style={{ margin: 5 }}>
         <View>
           <Text style={styles.timestamp}>
-            (<Moment fromNow element={Text}>
+            <Moment fromNow element={Text}>
               {props.alert.timestamp}
-            </Moment>)
+            </Moment>
           </Text>
         </View>
         <View>
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
   timestamp: {
     color: "black",
     fontFamily: "Arial",
-    width: 100,
     marginBottom: 1.2,
     padding: 4,
     marginBottom: 5
