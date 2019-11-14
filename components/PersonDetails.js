@@ -16,7 +16,7 @@ export default class PersonDetails extends Component {
 
   render() {
       const selectedPerson = this.props.selectedPerson
-      console.log('person', selectedPerson)
+      const healthInfo = selectedPerson.responder_profile
 
     return (
     <View styles={styles.modal}>
@@ -44,6 +44,16 @@ export default class PersonDetails extends Component {
             </View>
             <View style={styles.personContainer}>
             <Text style={styles.personInfo}>Medical Information</Text>
+            <View style={{flexDirection: 'row', margin: 5, justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+              {(healthInfo) ? 
+              <View>
+                <Text style={{color: 'white', fontSize: 20}}>Age: {healthInfo.dob}</Text>
+                <Text style={{color: 'white', fontSize: 20}}>Weight: {healthInfo.weight}</Text>
+                <Text style={{color: 'white', fontSize: 20}}>Height: {healthInfo.height}</Text>
+                <Text style={{color: 'white', fontSize: 20}}>Last Heart Rate: {healthInfo.heartRate}</Text>
+              </View>
+              : ''}
+            </View>
             </View>
         </View>
         </View>
