@@ -1,13 +1,10 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  ScrollView
-} from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import AddAlert from "../components/AddAlert";
 import Alerts from "../components/Alerts";
 import Axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
+import Config from "react-native-config";
 
 class AlertScreen extends React.Component {
   constructor(props) {
@@ -22,10 +19,32 @@ class AlertScreen extends React.Component {
     this.handleSumbit = this.handleSumbit.bind(this);
     this.getMessages = this.getMessages.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
+    this.getTone = this.getTone.bind(this);
   }
 
   componentDidMount() {
     this.getMessages();
+  }
+
+  async getTone(message) {
+    let url =
+      "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21";
+    try {
+      const response = await Axios.post(
+        url,
+        {},
+        {
+          auth: {
+            username: "apikey",
+            password: Config.WATSON_TONEANALYZER_API_KEY
+          },
+          data: { text: message }
+        }
+      );
+      return response.data.document_tone;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getMessages() {
@@ -41,6 +60,8 @@ class AlertScreen extends React.Component {
   }
 
   async sendMessage(message) {
+    let tone = await this.getTone(message.subject + " " + message.body);
+    console.log(tone);
     try {
       const response = await Axios.post(
         "https://solidarity-backend-030.onrender.com/messages",
@@ -48,10 +69,10 @@ class AlertScreen extends React.Component {
           timestamp: message.timestamp,
           subject: message.subject,
           body: message.body,
-          priority: message.priority
+          priority: message.priority,
+          tone: tone
         }
       );
-      console.log(response);
       this.getMessages();
     } catch (error) {
       console.error(error);

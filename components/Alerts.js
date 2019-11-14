@@ -2,16 +2,30 @@ import React from "react";
 import Moment from "react-moment";
 import { StyleSheet, Text, View, Image } from "react-native";
 
-const priorityColor = (priority) => {
-  switch(priority){
+// color code the messages based on priority
+const priorityColor = priority => {
+  switch (priority) {
     case "high":
-      return 'red';
+      return "red";
     case "medium":
-      return 'yellow';
+      return "yellow";
     case "low":
-      return 'green';
+      return "green";
   }
-}
+};
+
+// check tone analyzer data to find evidence of distress
+const isDistressed = toneData => {
+  let isDistressed = false;
+  if (toneData.tones !== undefined) {
+    toneData.tones.forEach(d => {
+      if (d.tone_id === "sadness" || d.tone_id === "fear") {
+        isDistressed = true;
+      }
+    });
+  }
+  return isDistressed;
+};
 
 const Alerts = props => {
   return (
@@ -21,15 +35,18 @@ const Alerts = props => {
           style={{
             width: 75,
             height: 75,
-            borderColor: "black",
+            borderColor: priorityColor(props.alert.priority),
+            borderWidth: 10,
             borderRadius: 75,
             alignSelf: "flex-start",
-            margin: 5
+            marginTop: 15, 
           }}
           source={require("./img/user-placeholder.png")}
         />
+        <Text style={{ alignSelf: "auto"}}>
+        {/* username goes here */}
+        </Text>
       </View>
-
       <View style={{ margin: 5 }}>
         <View>
           <Text style={styles.timestamp}>
@@ -44,14 +61,11 @@ const Alerts = props => {
         <View>
           <Text style={styles.body}>{props.alert.body}</Text>
         </View>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 25,
-            backgroundColor: priorityColor(props.alert.priority)
-          }}
-        ></View>
+        <View>
+          {isDistressed(props.alert.tone) ? (
+            <Text style={styles.distressed}>Distress detected</Text>
+          ) : null}
+        </View>
       </View>
     </View>
   );
@@ -67,12 +81,10 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   timestamp: {
-    color: "white",
+    color: "black",
     fontFamily: "Arial",
-    backgroundColor: "black",
-    width: 100,
     marginBottom: 1.2,
-    padding: 1,
+    padding: 4,
     marginBottom: 5
   },
   subject: {
@@ -83,6 +95,15 @@ const styles = StyleSheet.create({
   body: {
     fontFamily: "Arial",
     fontSize: 15,
+    marginBottom: 5
+  },
+  distressed: {
+    color: "white",
+    backgroundColor: "red",
+    fontWeight: "600",
+    padding: 4,
+    width: 130,
+    marginTop: 5,
     marginBottom: 5
   }
 });
