@@ -18,6 +18,8 @@ import AppleHealthKit from "rn-apple-healthkit";
 
 import Auth0 from "react-native-auth0";
 
+import axios from 'axios'
+
 const ProfileScreen = () => {
   const [longitude, setLongitude] = useState();
 
@@ -35,12 +37,16 @@ const ProfileScreen = () => {
 
   const [username, setUsername] = useState();
 
+  const [userID, setUserId] = useState();
+
+
   useEffect(() => {
     updateHealthData();
     updateLocation();
   });
 
   const updateHealthData = () => {
+
     let healthkit_init_options = {
       permissions: {
         read: ["Height", "Weight", "DateOfBirth", "HeartRate"]
@@ -104,6 +110,16 @@ const ProfileScreen = () => {
         }
       });
     });
+
+    if(userID) {
+      axios.post(`https://solidarity-backend-030.onrender.com/users/${userID}/updatehealth`, {
+            age,
+            weight,
+            height,
+            heartRate
+          })
+    }
+
   };
 
   const updateLocation = () => {
@@ -112,10 +128,21 @@ const ProfileScreen = () => {
         const location = position.coords;
         setLongitude(location.longitude);
         setLatitude(location.latitude);
+
+        console.log('LOCATION', location)
+
+        if(userID)
+          axios.post(`https://solidarity-backend-030.onrender.com/location/${userID}/`, {
+            longitude: location.longitude,
+            // longitude: -122.416417,
+            latitude: location.latitude
+          })
       },
       error => alert.alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
+
+
   };
 
   const updateSensorData = () => {
@@ -136,6 +163,11 @@ const ProfileScreen = () => {
         setAccessToken(credentials.accessToken);
         let jwt_decode = require('jwt-decode');
         let decoded_idToken = jwt_decode(credentials.idToken);
+        let id = decoded_idToken.sub
+        console.log(id)
+        id = id.split('auth0|')
+        setUserId(id[1])
+        console.log(id[1])
         setUsername(decoded_idToken.name);
       })
       .catch(error => console.log(error));
