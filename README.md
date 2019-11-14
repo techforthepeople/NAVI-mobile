@@ -8,18 +8,18 @@ The Tech to Protect Challenge is designed to inspire participants to connect, co
 
 ## Functionality
 
-* Users can view all Emergency Responders in the area and click to see basic information
-* Users can see their own health information from Apple's HealthKit
-* User can get real-time updates of their Heart Rate (while wearing Apple Watch or other wearable connected to the Apple Health app) 
-* User can chat with other emergency personnel on the application
+* Users can view emergency responders in the area and click to see basic information
+* Users can sync their location as well as health data from Apple HealthKit including real-time updates of their heart rate while wearing Apple Watch (or other wearable connected to the Apple Health app). This information can be monitored remotely on the web dashboard by authorized personnel.
+* Users can post messages for other emergency personnel on the application with priority labelling. IBM Watson is used to detect signs of distress in messages and flag them.
+* Users can configure alert thresholds for their wearable sensors (see the NAVI-IoT-Device repository)
 
 ## :hammer_and_pick: Built With
 
 * Javascript
 * React Native
-* CSS
 * React Native Maps
 * Apple HealthKit
+* IBM Watson Tone Analyzer API
 
 ## :writing_hand: Authors
 
