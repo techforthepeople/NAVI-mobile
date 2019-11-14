@@ -111,7 +111,14 @@ const ProfileScreen = () => {
       });
     });
 
-    console.log('UserIDDD', userID)
+    if(userID) {
+      axios.post(`https://solidarity-backend-030.onrender.com/users/${userID}/updatehealth`, {
+            age,
+            weight,
+            height,
+            heartRate
+          })
+    }
 
   };
 
@@ -127,6 +134,7 @@ const ProfileScreen = () => {
         if(userID)
           axios.post(`https://solidarity-backend-030.onrender.com/location/${userID}/`, {
             longitude: location.longitude,
+            // longitude: -122.416417,
             latitude: location.latitude
           })
       },
