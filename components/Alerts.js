@@ -35,7 +35,8 @@ const Alerts = props => {
           style={{
             width: 75,
             height: 75,
-            borderColor: "black",
+            borderColor: priorityColor(props.alert.priority),
+            borderWidth: 10,
             borderRadius: 75,
             alignSelf: "flex-start",
             marginTop: 15, 
@@ -43,25 +44,15 @@ const Alerts = props => {
           source={require("./img/user-placeholder.png")}
         />
         <Text style={{ alignSelf: "auto"}}>
-          Username
+        {/* username goes here */}
         </Text>
       </View>
-      <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 25,
-            backgroundColor: priorityColor(props.alert.priority),
-            marginTop: 15
-          }}
-        ></View>
-
       <View style={{ margin: 5 }}>
         <View>
           <Text style={styles.timestamp}>
-            <Moment fromNow element={Text}>
+            (<Moment fromNow element={Text}>
               {props.alert.timestamp}
-            </Moment>
+            </Moment>)
           </Text>
         </View>
         <View>
@@ -90,12 +81,11 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   timestamp: {
-    color: "white",
+    color: "black",
     fontFamily: "Arial",
-    backgroundColor: "black",
     width: 100,
     marginBottom: 1.2,
-    padding: 1,
+    padding: 4,
     marginBottom: 5
   },
   subject: {
@@ -112,6 +102,8 @@ const styles = StyleSheet.create({
     color: "white",
     backgroundColor: "red",
     fontWeight: "600",
+    padding: 4,
+    width: 130,
     marginTop: 5,
     marginBottom: 5
   }
