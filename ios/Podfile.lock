@@ -192,7 +192,7 @@ PODS:
     - React
   - react-native-maps (0.26.1):
     - React
-  - react-native-webview (7.4.3):
+  - react-native-webview (7.5.1):
     - React
   - React-RCTActionSheet (0.61.4):
     - React-Core/RCTActionSheetHeaders (= 0.61.4)
@@ -371,7 +371,7 @@ SPEC CHECKSUMS:
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
-  react-native-webview: dbfec7f16f09a71ea53731bdf5f86ae70eac4313
+  react-native-webview: b7ad1323338cb52e370bb07d6141308953ff2440
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
   React-RCTBlob: 8e0b23d95c9baa98f6b0e127e07666aaafd96c34

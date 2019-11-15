@@ -10,7 +10,7 @@ export default function SettingsScreen() {
 
   const [sensorFound, setSensorFound] = useState(false);
 
-  const sensorConfigUrl = "http://navi-sensor.local:5000/";
+  const sensorConfigUrl = "https://vishnu.io/navi-pi-simulator/";
 
   const findSensor = () => {
     const timeout = new Promise((resolve, reject) => {

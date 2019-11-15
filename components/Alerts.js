@@ -17,7 +17,7 @@ const priorityColor = priority => {
 // check tone analyzer data to find evidence of distress
 const isDistressed = toneData => {
   let isDistressed = false;
-  if (toneData.tones !== undefined) {
+  if((toneData !== null) && (toneData.tones !== undefined)) {
     toneData.tones.forEach(d => {
       if (d.tone_id === "sadness" || d.tone_id === "fear") {
         isDistressed = true;
