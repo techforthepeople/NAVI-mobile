@@ -4,7 +4,7 @@ Winning solution for IBM's TechToProtect Challenge! iOS Mobile Application for E
 
 ## Motivation
 
-The Tech to Protect Challenge is designed to inspire participants to connect, collaborate, and create technologies of the future for public safety. Solidarity provides an integrated, all in one platform for Emergency Responders to locate each other and detect when they are in danger. This repo contains code for the mobile application.
+The Tech to Protect Challenge is designed to inspire participants to connect, collaborate, and create technologies of the future for public safety. NAVI provides an integrated, all in one platform for Emergency Responders to locate each other and detect when they are in danger. This repo contains code for the mobile application.
 
 ## Functionality
 
