@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { Button } from "react-native-elements";
 import MapView from "react-native-maps";
 import Geolocation from "@react-native-community/geolocation";
 import PersonDetails from '../components/PersonDetails'
@@ -54,7 +55,16 @@ _onLogout = () => {
         });
 };
 
-
+ getMarkers = async () => {
+  try {
+    const {data} = await axios.get('https://solidarity-backend-030.onrender.com/location/')
+    this.setState({ markers: data })
+    } catch(error){
+      if (error.response){
+        console.log(error.response.data)
+      }
+    }
+ }
 
   //Get A Users Location!
   async componentDidMount() {
@@ -67,9 +77,7 @@ _onLogout = () => {
         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
 
-      const {data} = await axios.get('https://solidarity-backend-030.onrender.com/location/')
-
-      this.setState({ markers: data })
+      this.getMarkers()
 
       console.log('MARKER DATA', this.state.markers)
     }
@@ -89,6 +97,7 @@ _onLogout = () => {
   render() {
     let loggedIn = this.state.accessToken === null ? false : true;
 
+      if(this.state.markers.isArray && this.state.markers.length > 0 ){
       return (
         //Render MapVIew
         <View style={styles.container}>
@@ -134,12 +143,47 @@ _onLogout = () => {
 
         </View>
     );
+    
+    }else{
+      return(
+        <SafeAreaView>
+        <View style={errorMessageStyle.body}>
+          <View style={errorMessageStyle.sectionContainer}>
+          <Text style={errorMessageStyle.sectionTitle}>Error</Text>
+            <Text style={errorMessageStyle.sectionDescription}>There was an error fetching data, please check your network connection.</Text>
+            <Button title="Retry" onPress={() => this.getMarkers()} />
+          </View>
+        </View>
+        </SafeAreaView>
+      )
     }
   
     }
+  }
 
     export default Map;
    
+    const errorMessageStyle = StyleSheet.create({
+      body: {
+        backgroundColor: "white"
+      },
+      sectionContainer: {
+        marginTop: 20,
+        paddingHorizontal: 24
+      },
+      sectionTitle: {
+        fontSize: 24,
+        fontWeight: "600",
+        color: "black"
+      },
+      sectionDescription: {
+        marginTop: 8,
+        marginBottom: 10,
+        fontSize: 18,
+        fontWeight: "400",
+        color: "grey"
+      }
+    });
 
     const styles = StyleSheet.create({
       container: {
@@ -183,5 +227,3 @@ _onLogout = () => {
         fontSize: 50,
       }
     });
-
-    

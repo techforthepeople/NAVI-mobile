@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { Text, StyleSheet, View, ScrollView, SafeAreaView } from "react-native";
 import AddAlert from "../components/AddAlert";
 import Alerts from "../components/Alerts";
 import Axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 import Config from "react-native-config";
+import { Button } from "react-native-elements";
 
 class AlertScreen extends React.Component {
   constructor(props) {
@@ -94,6 +95,8 @@ class AlertScreen extends React.Component {
   }
 
   render() {
+
+    if(this.state.alerts.isArray && this.state.alerts.length > 0){
     return (
       <View style={styles.container}>
         <View style={styles.icon}>
@@ -121,7 +124,20 @@ class AlertScreen extends React.Component {
         </View>
       </View>
     );
+  }else{
+    return (
+      <SafeAreaView>
+      <View style={errorMessageStyle.body}>
+        <View style={errorMessageStyle.sectionContainer}>
+        <Text style={errorMessageStyle.sectionTitle}>Error</Text>
+          <Text style={errorMessageStyle.sectionDescription}>There was an error fetching data, please check your network connection.</Text>
+          <Button title="Retry" onPress={() => this.getMessages()} />
+        </View>
+      </View>
+      </SafeAreaView>
+    )
   }
+}
 }
 
 const styles = StyleSheet.create({
@@ -137,6 +153,28 @@ const styles = StyleSheet.create({
   subContainer: {
     flex: 6,
     alignItems: "center"
+  }
+});
+
+const errorMessageStyle = StyleSheet.create({
+  body: {
+    backgroundColor: "white"
+  },
+  sectionContainer: {
+    marginTop: 20,
+    paddingHorizontal: 24
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: "600",
+    color: "black"
+  },
+  sectionDescription: {
+    marginTop: 8,
+    marginBottom: 10,
+    fontSize: 18,
+    fontWeight: "400",
+    color: "grey"
   }
 });
 
