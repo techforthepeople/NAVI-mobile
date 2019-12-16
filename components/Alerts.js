@@ -58,7 +58,7 @@ const Alerts = props => {
         <View>
           <Text style={styles.subject}>{props.alert.subject}</Text>
         </View>
-        <View>
+        <View style={{flexDirection:'row'}}>
           <Text style={styles.body}>{props.alert.body}</Text>
         </View>
         <View>
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderRadius: 5,
     borderWidth: 1,
-    marginTop: 10
+    marginTop: 10,
+    padding: 10
   },
   timestamp: {
     color: "black",
@@ -95,7 +96,9 @@ const styles = StyleSheet.create({
   body: {
     fontFamily: "Arial",
     fontSize: 15,
-    marginBottom: 5
+    marginBottom: 5,
+    flex: 1,
+    flexWrap: 'wrap'
   },
   distressed: {
     color: "white",
