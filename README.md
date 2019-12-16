@@ -32,11 +32,7 @@ The Tech to Protect Challenge is designed to inspire participants to connect, co
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/36509646/68819446-03448e00-0656-11ea-805d-8a4a2bd580df.png" alt="alt text" width="200" height="400"> 
-<img src="https://user-images.githubusercontent.com/36509646/68819496-1fe0c600-0656-11ea-8e70-0899c3261d3a.png" alt="alt text" width="200" height="400"> 
-<img src="https://user-images.githubusercontent.com/1212163/70878058-e91c0980-1f8d-11ea-8cc0-2547bc1943ad.png" alt="alt text" width="200" height="400"> 
-<img src="https://user-images.githubusercontent.com/1212163/68947352-3e90ab00-0783-11ea-846c-e20fb3cae137.png" alt="alt text" width="200" height="400">
-<img src="https://user-images.githubusercontent.com/36509646/68819549-47379300-0656-11ea-9df7-1d8a75d6f1e6.png" alt="alt text" width="200" height="400"> <img src="https://user-images.githubusercontent.com/1212163/68947284-13a65700-0783-11ea-9ffb-50f766aecb89.png" alt="alt text" width="200" height="400">
+<img src="https://user-images.githubusercontent.com/36509646/68819446-03448e00-0656-11ea-805d-8a4a2bd580df.png" alt="alt text" width="200" height="400"> <img src="https://user-images.githubusercontent.com/36509646/68819496-1fe0c600-0656-11ea-8e70-0899c3261d3a.png" alt="alt text" width="200" height="400"> <img src="https://user-images.githubusercontent.com/1212163/70878058-e91c0980-1f8d-11ea-8cc0-2547bc1943ad.png" alt="alt text" width="200" height="400"> <img src="https://user-images.githubusercontent.com/1212163/68947352-3e90ab00-0783-11ea-846c-e20fb3cae137.png" alt="alt text" width="200" height="400"> <img src="https://user-images.githubusercontent.com/36509646/68819549-47379300-0656-11ea-9df7-1d8a75d6f1e6.png" alt="alt text" width="200" height="400"> <img src="https://user-images.githubusercontent.com/1212163/68947284-13a65700-0783-11ea-9ffb-50f766aecb89.png" alt="alt text" width="200" height="400">
 
 ## Demo Link
 https://www.youtube.com/watch?v=2gxkPN-a7gw&feature=youtu.be
