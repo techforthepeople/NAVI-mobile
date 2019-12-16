@@ -52,6 +52,7 @@ _onLogout = () => {
  getMarkers = async () => {
   try {
     const {data} = await axios.get('https://solidarity-backend-030.onrender.com/location/')
+    console.log(data)
     this.setState({ markers: data })
     } catch(error){
       if (error.response){
@@ -71,8 +72,6 @@ async componentDidMount() {
       );
 
       this.getMarkers()
-
-      console.log('MARKER DATA', this.state.markers)
     }
 
   
@@ -90,8 +89,11 @@ async componentDidMount() {
   render() {
     let loggedIn = this.state.accessToken === null ? false : true;
 
-      if(this.state.markers.isArray && this.state.markers.length > 0 ){
-      return (
+    console.log(this.state.markers.length)
+
+    return(
+      (this.state.markers.length > 0) ?
+ 
         //Render MapVIew
         <View style={styles.container}>
         <MapView 
@@ -135,21 +137,20 @@ async componentDidMount() {
 
 
         </View>
-    );
+ 
     
-    }else{
-      return(
+    :
+  
         <SafeAreaView>
         <View style={errorMessageStyle.body}>
           <View style={errorMessageStyle.sectionContainer}>
-          <Text style={errorMessageStyle.sectionTitle}>Error</Text>
-            <Text style={errorMessageStyle.sectionDescription}>There was an error fetching data, please check your network connection.</Text>
-            <Button title="Retry" onPress={() => this.getMarkers()} type="outline" />
+          <Text style={errorMessageStyle.sectionTitle}>Getting Data</Text>
+            <Text style={errorMessageStyle.sectionDescription}>If this takes too long, please check your network connection.</Text>
+            <Button title="Refresh" onPress={() => this.getMarkers()} type="outline" />
           </View>
         </View>
         </SafeAreaView>
-      )
-    }
+    )
   
     }
   }

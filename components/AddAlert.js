@@ -42,22 +42,24 @@ export default class AddAlert extends Component {
                   onChangeText={subject => {
                     this.setState({ subject });
                   }}
+                  style={{ marginTop: 10, padding: 15, backgroundColor: '#EFEFEF' }}
                 />
               </View>
 
               <View style={{ marginTop: 20 }}>
                 <Text style={{ fontSize: 20 }}>Message</Text>
                 <TextInput
-                  multiline
+                  multiline={true}
                   placeholder="Enter message details..."
                   onChangeText={body => {
                     this.setState({ body });
                   }}
+                  style={{ marginTop: 10, padding: 15, paddingTop: 15, backgroundColor: '#EFEFEF', height: 200 }}
                 />
               </View>
 
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontSize: 20 }}>Priority</Text>
+                <Text style={{ fontSize: 20, marginBottom: 10 }}>Priority</Text>
                 <RNPickerSelect
                   onValueChange={value => this.setState({ priority: value })}
                   items={[
@@ -65,22 +67,25 @@ export default class AddAlert extends Component {
                     { label: "Medium", value: "medium" },
                     { label: "Low", value: "low" }
                   ]}
+                  style={{ marginTop: 10, padding: 20, backgroundColor: '#EFEFEF' }}
                 />
               </View>
 
               <Button
-                title="Submit"
+                title="Add Message"
                 onPress={() => {
                   this.props.handleSumbit(this.state);
                 }}
-                style={{ padding: 20 }}
+                style={{ paddingTop: 30, paddingLeft: 20, paddingRight: 20 }}
+                type="outline"
               />
               <Button
                 title="Cancel"
                 onPress={() => {
                   this.props.closeModal();
                 }}
-                style={{ padding: 20 }}
+                style={{ paddingTop: 5, paddingLeft: 20, paddingRight: 20 }}
+                type="outline"
               />
 
             </View>

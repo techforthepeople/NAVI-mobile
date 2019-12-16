@@ -82,7 +82,6 @@ class AlertScreen extends React.Component {
 
   handleOnPress() {
     this.setState({ isModalVisible: true });
-    console.log(this.state.isModalVisible);
   }
 
   closeModal() {
@@ -96,8 +95,9 @@ class AlertScreen extends React.Component {
 
   render() {
 
-    if(this.state.alerts.isArray && this.state.alerts.length > 0){
     return (
+    (this.state.alerts.length > 0) ?
+    
       <View style={styles.container}>
         <View style={styles.icon}>
           <Icon
@@ -123,20 +123,31 @@ class AlertScreen extends React.Component {
           />
         </View>
       </View>
-    );
-  }else{
-    return (
+    
+
+  :
+
       <SafeAreaView>
       <View style={errorMessageStyle.body}>
         <View style={errorMessageStyle.sectionContainer}>
-        <Text style={errorMessageStyle.sectionTitle}>Error</Text>
-          <Text style={errorMessageStyle.sectionDescription}>There was an error fetching data, please check your network connection.</Text>
-          <Button title="Retry" onPress={() => this.getMessages()} type="outline" />
+        <Text style={errorMessageStyle.sectionTitle}>No Messages</Text>
+          <Text style={errorMessageStyle.sectionDescription}>There aren't any messages right now.</Text>
+          <Button title="Add a Message" onPress={this.handleOnPress} type="outline" />
         </View>
       </View>
+
+      <View>
+          <AddAlert
+            isModalVisible={this.state.isModalVisible}
+            closeModal={() => this.closeModal()}
+            selectedPerson={this.state.selectedPerson}
+            handleSumbit={alert => this.handleSumbit(alert)}
+          />
+        </View>
+        
       </SafeAreaView>
-    )
-  }
+    
+    );
 }
 }
 
