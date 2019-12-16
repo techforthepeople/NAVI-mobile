@@ -131,7 +131,7 @@ class AlertScreen extends React.Component {
         <View style={errorMessageStyle.sectionContainer}>
         <Text style={errorMessageStyle.sectionTitle}>Error</Text>
           <Text style={errorMessageStyle.sectionDescription}>There was an error fetching data, please check your network connection.</Text>
-          <Button title="Retry" onPress={() => this.getMessages()} />
+          <Button title="Retry" onPress={() => this.getMessages()} type="outline" />
         </View>
       </View>
       </SafeAreaView>

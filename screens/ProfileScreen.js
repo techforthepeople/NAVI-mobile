@@ -7,7 +7,8 @@ import {
   View,
   Text,
   StatusBar,
-  Alert
+  Alert,
+  Switch
 } from "react-native";
 
 import { Button } from "react-native-elements";
@@ -18,20 +19,26 @@ import AppleHealthKit from "rn-apple-healthkit";
 
 import Auth0 from "react-native-auth0";
 
-import axios from 'axios'
+import axios from "axios";
 
 const ProfileScreen = () => {
-  const [longitude, setLongitude] = useState();
+  const [longitude, setLongitude] = useState(0);
 
-  const [latitude, setLatitude] = useState();
+  const [latitude, setLatitude] = useState(0);
 
-  const [height, setHeight] = useState();
+  const [height, setHeight] = useState(0);
 
-  const [weight, setWeight] = useState();
+  const [weight, setWeight] = useState(0);
 
-  const [heartRate, setHeartRate] = useState();
+  const [heartRate, setHeartRate] = useState(0);
 
-  const [age, setAge] = useState();
+  const [age, setAge] = useState(0);
+
+  const [temperature, setTemperature] = useState(null);
+
+  const [humidity, setHumidity] = useState(null);
+
+  const [pressure, setPressure] = useState(null);
 
   const [accessToken, setAccessToken] = useState(null);
 
@@ -39,14 +46,32 @@ const ProfileScreen = () => {
 
   const [userID, setUserId] = useState();
 
+  const noDataMsg = "No data available";
 
   useEffect(() => {
     updateHealthData();
     updateLocation();
   });
 
-  const updateHealthData = () => {
+  const inchestoFeetInches = (inches) => {
+    var feet = Math.floor(inches/12);
+    inches %= 12
+    return `${feet}' ${inches}"`
+  }
 
+  const updateSensorData = () => {
+    axios.get('http://raspberrypi.local:5000/data')
+    .then(function (response){
+      setTemperature(response.data.temp);
+      setHumidity(response.data.humidity);
+      setPressure(response.data.pressure);
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+    }
+
+  const updateHealthData = () => {
     let healthkit_init_options = {
       permissions: {
         read: ["Height", "Weight", "DateOfBirth", "HeartRate"]
@@ -111,15 +136,17 @@ const ProfileScreen = () => {
       });
     });
 
-    if(userID) {
-      axios.post(`https://solidarity-backend-030.onrender.com/users/${userID}/updatehealth`, {
-            age,
-            weight,
-            height,
-            heartRate
-          })
+    if (userID) {
+      axios.post(
+        `https://solidarity-backend-030.onrender.com/users/${userID}/updatehealth`,
+        {
+          age,
+          weight,
+          height,
+          heartRate
+        }
+      );
     }
-
   };
 
   const updateLocation = () => {
@@ -129,24 +156,21 @@ const ProfileScreen = () => {
         setLongitude(location.longitude);
         setLatitude(location.latitude);
 
-        console.log('LOCATION', location)
+        console.log("LOCATION", location);
 
-        if(userID)
-          axios.post(`https://solidarity-backend-030.onrender.com/location/${userID}/`, {
-            longitude: location.longitude,
-            // longitude: -122.416417,
-            latitude: location.latitude
-          })
+        if (userID)
+          axios.post(
+            `https://solidarity-backend-030.onrender.com/location/${userID}/`,
+            {
+              longitude: location.longitude,
+              // longitude: -122.416417,
+              latitude: location.latitude
+            }
+          );
       },
       error => alert.alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
-
-
-  };
-
-  const updateSensorData = () => {
-    console.log("Update sensor data");
   };
 
   const auth0 = new Auth0({
@@ -161,13 +185,13 @@ const ProfileScreen = () => {
       })
       .then(credentials => {
         setAccessToken(credentials.accessToken);
-        let jwt_decode = require('jwt-decode');
+        let jwt_decode = require("jwt-decode");
         let decoded_idToken = jwt_decode(credentials.idToken);
-        let id = decoded_idToken.sub
-        console.log(id)
-        id = id.split('auth0|')
-        setUserId(id[1])
-        console.log(id[1])
+        let id = decoded_idToken.sub;
+        console.log(id);
+        id = id.split("auth0|");
+        setUserId(id[1]);
+        console.log(id[1]);
         setUsername(decoded_idToken.name);
       })
       .catch(error => console.log(error));
@@ -187,6 +211,8 @@ const ProfileScreen = () => {
 
   let loggedIn = accessToken === null ? false : true;
 
+  var heightString = inchestoFeetInches(height);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -195,34 +221,21 @@ const ProfileScreen = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
         >
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>My Profile</Text>
               <Text style={styles.sectionDescription}>
-                {loggedIn ? `Logged in as ${username}` : "Not logged in."}
+                {loggedIn
+                  ? `Logged in as ${username}`
+                  : "You are not currently logged in."}
               </Text>
               <Button
                 onPress={loggedIn ? () => logout() : () => login()}
                 title={loggedIn ? "Log Out" : "Log In"}
+                type="outline"
               />
-              <Text style={styles.sectionTitle}>Health Data</Text>
-              <Text style={styles.sectionDescription}>Age: {age}</Text>
-              <Text style={styles.sectionDescription}>
-                Height (in): {height}
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Weight (lbs): {weight}
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Latest heart rate (bpm): {heartRate}
-              </Text>
-              <Button title="Update" onPress={() => updateHealthData()} />
             </View>
+
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Location</Text>
               <Text style={styles.sectionDescription}>
@@ -231,15 +244,51 @@ const ProfileScreen = () => {
               <Text style={styles.sectionDescription}>
                 Longitude: {longitude}
               </Text>
-              <Button title="Update" onPress={() => updateLocation()} />
+              <Button
+                title="Update"
+                onPress={() => updateLocation()}
+                type="outline"
+              />
             </View>
+
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Sensors</Text>
-              <Text style={styles.sectionDescription}>Temperature:</Text>
-              <Text style={styles.sectionDescription}>Humidity:</Text>
-              <Text style={styles.sectionDescription}>Pressure:</Text>
-              <Button title="Update" onPress={() => updateSensorData()} />
+              <Text style={styles.sectionDescription}>
+                Temperature: {(temperature != null) ? `${Math.round(temperature)} C` : noDataMsg}
+              </Text>
+
+              <Text style={styles.sectionDescription}>
+                Humidity: {(humidity != null) ? `${Math.round(humidity)}%` : noDataMsg}
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Pressure: {(pressure != null) ? `${Math.round(pressure)} Millibars` : noDataMsg}
+              </Text>
+              <Button
+                title="Update"
+                onPress={() => updateSensorData()}
+                type="outline"
+              />
             </View>
+
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Health Data</Text>
+              <Text style={styles.sectionDescription}>Age: {age}</Text>
+              <Text style={styles.sectionDescription}>
+               Height: {(height != 0) ? heightString : noDataMsg}
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Weight: {(weight != 0) ? `${weight} lbs` : noDataMsg}
+              </Text>
+              <Text style={styles.sectionDescription}>
+                Latest heart rate: {(heartRate != 0) ? `${heartRate} bpm` : noDataMsg}
+              </Text>
+              <Button
+                title="Update"
+                onPress={() => updateHealthData()}
+                type="outline"
+              />
+            </View>
+
           </View>
         </ScrollView>
       </SafeAreaView>

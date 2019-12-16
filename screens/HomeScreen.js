@@ -6,10 +6,6 @@ import Geolocation from "@react-native-community/geolocation";
 import PersonDetails from '../components/PersonDetails'
 import axios from 'axios'
 
-import {
-  Header
-} from "react-native-elements"
-
 class Map extends React.Component {
   constructor(props) {
     super(props);
@@ -22,8 +18,6 @@ class Map extends React.Component {
         desLatitude: null,
         desLongitude: null, 
         selectedPerson: {},
-
-        //Fake Data
         markers: []
     }
     this.handleOnPress = this.handleOnPress.bind(this)
@@ -66,8 +60,7 @@ _onLogout = () => {
     }
  }
 
-  //Get A Users Location!
-  async componentDidMount() {
+async componentDidMount() {
     Geolocation.getCurrentPosition(
         position => {
           const location = position.coords;
@@ -151,7 +144,7 @@ _onLogout = () => {
           <View style={errorMessageStyle.sectionContainer}>
           <Text style={errorMessageStyle.sectionTitle}>Error</Text>
             <Text style={errorMessageStyle.sectionDescription}>There was an error fetching data, please check your network connection.</Text>
-            <Button title="Retry" onPress={() => this.getMarkers()} />
+            <Button title="Retry" onPress={() => this.getMarkers()} type="outline" />
           </View>
         </View>
         </SafeAreaView>
