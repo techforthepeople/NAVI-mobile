@@ -131,7 +131,7 @@ class AlertScreen extends React.Component {
       <View style={errorMessageStyle.body}>
         <View style={errorMessageStyle.sectionContainer}>
         <Text style={errorMessageStyle.sectionTitle}>No Messages</Text>
-          <Text style={errorMessageStyle.sectionDescription}>There aren't any messages right now.</Text>
+          <Text style={errorMessageStyle.sectionDescription}>We couldn't find any messages right now.</Text>
           <Button title="Add a Message" onPress={this.handleOnPress} type="outline" />
         </View>
       </View>

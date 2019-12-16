@@ -49,14 +49,19 @@ const ProfileScreen = () => {
   const noDataMsg = "No data available";
 
   useEffect(() => {
-    updateHealthData();
-    updateLocation();
+    updateAllData();
   });
 
   const inchestoFeetInches = (inches) => {
     var feet = Math.floor(inches/12);
     inches %= 12
     return `${feet}' ${inches}"`
+  }
+
+  const updateAllData = () => {
+    updateHealthData();
+    updateLocation();
+    updateSensorData();
   }
 
   const updateSensorData = () => {
