@@ -1,5 +1,5 @@
 PODS:
-  - A0Auth0 (2.1.0):
+  - A0Auth0 (2.1.1):
     - React
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
@@ -229,9 +229,9 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - RNGestureHandler (1.5.2):
+  - RNGestureHandler (1.5.3):
     - React
-  - RNReanimated (1.4.0):
+  - RNReanimated (1.7.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -351,7 +351,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  A0Auth0: 351b3b07e58db39b3bb33f58acf35a878fbba74d
+  A0Auth0: 0613cd26c5df8031a1f43acc917844b61dbdacf4
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
@@ -382,8 +382,8 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
-  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
+  RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
+  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
