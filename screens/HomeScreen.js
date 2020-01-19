@@ -31,7 +31,7 @@ class Map extends React.Component {
             scope: 'openid profile email'
         })
         .then(credentials => {
-            Alert.alert('AccessToken: ' + credentials.accessToken);
+            alert('AccessToken: ' + credentials.accessToken);
             this.setState({ accessToken: credentials.accessToken });
         })
         .catch(error => console.log(error));
@@ -41,7 +41,7 @@ _onLogout = () => {
     auth0.webAuth
         .clearSession({})
         .then(success => {
-            Alert.alert('Logged out!');
+            alert('Logged out!');
             this.setState({ accessToken: null });
         })
         .catch(error => {
@@ -67,7 +67,7 @@ async componentDidMount() {
           const location = position.coords;
           this.setState({latitude: location.latitude, longitude: location.longitude})
         },
-        error => alert.alert(error.message),
+        error => alert(error.message),
         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
 
